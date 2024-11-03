@@ -17,7 +17,7 @@ const COMMANDS: Commands = {
     handler: (args, router) => {
       router.push(`/${args[0]}`);
     },
-    description: "open a page",
+    description: "goto <page>\nopen a page",
   },
   go: "goto",
   g: "goto",
@@ -25,36 +25,55 @@ const COMMANDS: Commands = {
     handler: (args) => {
       console.log(args);
       if (args.length === 0) {
-        return "available commands are:\n- help\n- goto";
+        const commands = Object.entries(COMMANDS)
+          .filter((e) => typeof e[1] === "object")
+          .map((e) => `- ${e[0]}`)
+          .join("\n");
+
+        return `available commands are:\n${commands}`;
       } else {
         const c = getCommand(args);
         console.log(c);
+
         if (c !== null) {
-          return c[0].description;
+          const aliases = Object.entries(c[2])
+            .filter((e) => e[1] === c[3])
+            .map((e) => e[0]);
+          aliases.sort();
+
+          return aliases.length > 0
+            ? `${c[0].description}\naliases: ${aliases.join(", ")}`
+            : c[0].description;
         } else {
           return "Unknown command";
         }
       }
     },
-    description: "get help for all or a specific command",
+    description: "help <cmd>\nget help for all or a specific command",
   },
 };
 
-function getCommand(segments: string[]): [Command, string[]] | null {
+function getCommand(
+  segments: string[]
+): [Command, string[], Commands, string] | null {
   let c = COMMANDS;
+  let parent = COMMANDS;
+  let name = "";
   while (true) {
-    let next = c[segments[0]];
+    let next = c[(name = segments[0])];
     segments = segments.slice(1);
 
     while (true) {
       if (typeof next === "undefined") {
         return null;
       } else if (typeof next === "string") {
+        name = next;
         next = c[next];
       } else if ("subcommand" in next) {
+        parent = c;
         c = next.subcommand;
       } else {
-        return [next, segments];
+        return [next, segments, parent, name];
       }
     }
   }
