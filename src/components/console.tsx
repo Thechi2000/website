@@ -2,25 +2,34 @@ import { NextRouter, useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 
 type Command = {
-  [keyword: string]: string | ((router: NextRouter) => string | void) | Command;
+  [keyword: string]:
+    | string
+    | {
+        handler: (args: string[], router: NextRouter) => string | void;
+        description: string;
+      }
+    | { subcommand: Command; description: string };
 };
 const COMMANDS: Command = {
   goto: {
-    home: (r) => {
-      r.push("/");
+    handler: (args, router) => {
+      router.push(`/${args[0]}`);
     },
-    skills: (r) => {
-      r.push("/skills");
-    },
+    description: "open a page",
   },
   go: "goto",
   g: "goto",
+  help: {
+    handler: () => "goto",
+    description: "get help for all or a specific command",
+  },
 };
 
 export default function Console() {
   const [shown, setShown] = useState(false);
   const input = useRef<HTMLInputElement>(null);
   const [command, setCommand] = useState("");
+  const [tooltip, setTooltip] = useState("");
   const router = useRouter();
 
   useEffect(() => {
@@ -58,13 +67,23 @@ export default function Console() {
       segments = segments.slice(1);
 
       while (true) {
-        if (typeof next === "string") {
+        if (typeof next === "undefined") {
+          setTooltip("Unknown command");
+          return;
+        } else if (typeof next === "string") {
           next = c[next];
-        } else if (typeof next === "object") {
-          c = next;
+        } else if ("subcommand" in next) {
+          c = next.subcommand;
           break;
         } else {
-          next(router);
+          const res = next.handler(segments, router);
+          if (typeof res === "string") {
+            setTooltip(res);
+          } else {
+            setShown(false);
+            setCommand("");
+            setTooltip("");
+          }
           return;
         }
       }
@@ -74,7 +93,6 @@ export default function Console() {
   return (
     <div id="console" className={!shown ? "hidden" : ""}>
       <span>Console</span>
-      <br />
       <input
         ref={input}
         value={command}
@@ -82,11 +100,10 @@ export default function Console() {
         onKeyUp={(e) => {
           if (e.key === "Enter") {
             handleCommand();
-            setShown(false);
-            setCommand("");
           }
         }}
       />
+      <span>{tooltip}</span>
     </div>
   );
 }
