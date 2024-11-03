@@ -17,9 +17,9 @@ export default function Home() {
       <p>Master student in Computer Science at EPFL</p>
       <p>Type :g &lt;page&gt; to go to a page:</p>
       <ul>
-        {PAGES.map((p) => (
-          <li key={p}>
-            <a href={`/${p}`}>{p}</a>
+        {Object.entries(PAGES).map((p) => (
+          <li key={p[0]}>
+            <a href={`/${p[1]}`}>{p[0]}</a>
           </li>
         ))}
       </ul>

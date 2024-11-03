@@ -1,3 +1,4 @@
+import { PAGES } from "@/pages";
 import { NextRouter, useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 
@@ -15,7 +16,16 @@ type Commands = {
 const COMMANDS: Commands = {
   goto: {
     handler: (args, router) => {
-      router.push(`/${args[0]}`);
+      const dest = PAGES[args[0]];
+
+      if (dest !== undefined) {
+        router.push(`/${dest}`);
+      } else {
+        return (
+          "Unknown destination.\nChoose one from " +
+          Object.keys(PAGES).join(", ")
+        );
+      }
     },
     description: "goto <page>\nopen a page",
   },
