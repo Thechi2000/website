@@ -15,10 +15,6 @@ export default function Home() {
             <h1>Welcome to my website&nbsp;!</h1>
             <h2>Ludovic Mermod</h2>
           </div>
-
-          <div>
-            <Ferris id={"ferris"} />
-          </div>
         </div>
         <AboutMe />
       </div>

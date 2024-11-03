@@ -23,8 +23,8 @@ export default function AboutMe() {
             <a href="https://www.epfl.ch" rel="noopener noreferrer nofollow" target="_blank">
               EPFL
             </a>
-            &nbsp;since 2020. I am taking the bachelor&apos;s degree in computer science, and currently in my third year
-            of study. I also work for two student associations, as a teaching and research assistant.
+            &nbsp;since 2024. I am taking the master&apos;s degree in computer science, after having completed my
+            bachelor&apos;s. I also work for several student associations, as a teaching and research assistant.
             <br />
           </p>
         </AboutMeSection>
@@ -33,7 +33,7 @@ export default function AboutMe() {
 
         <AboutMeSection logo={<ClicLogo />}>
           <p>
-            &emsp; Since autumn 2022, I am IT Co-Manager of the{" "}
+            &emsp; Since autumn 2023, I am IT Manager of the{" "}
             <a href="https://clic.epfl.ch/" rel="noopener noreferrer nofollow" target="_blank">
               CLIC
             </a>
@@ -53,20 +53,6 @@ export default function AboutMe() {
             from EPFL, to translate an algorithm able to match Regexp containing lookarounds in linear time, whereas
             current engine only implement it in exponential time.
             <br />
-          </p>
-        </AboutMeSection>
-
-        <div className="separator" />
-
-        <AboutMeSection logo={<AgepolyLogo />}>
-          <p>
-            &emsp; I have been working at the{" "}
-            <a href="https://agepoly.ch" rel="noopener noreferrer nofollow" target="_blank">
-              AGEPOLY
-            </a>
-            , the general association of polytechnic students, since spring 2022 as part of the IT team, as a backend
-            developper. My main projects there are <Link href="/projects/agevote">AGEVoté</Link> and{" "}
-            <Link href="/projects/whiskey">Whiskey</Link>.
           </p>
         </AboutMeSection>
 
