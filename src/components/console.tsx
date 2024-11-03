@@ -1,16 +1,18 @@
 import { NextRouter, useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 
-type Command = {
+interface Command {
+  handler: (args: string[], router: NextRouter) => string | void;
+  description: string;
+}
+
+type Commands = {
   [keyword: string]:
     | string
-    | {
-        handler: (args: string[], router: NextRouter) => string | void;
-        description: string;
-      }
-    | { subcommand: Command; description: string };
+    | Command
+    | { subcommand: Commands; description: string };
 };
-const COMMANDS: Command = {
+const COMMANDS: Commands = {
   goto: {
     handler: (args, router) => {
       router.push(`/${args[0]}`);
@@ -20,10 +22,43 @@ const COMMANDS: Command = {
   go: "goto",
   g: "goto",
   help: {
-    handler: () => "goto",
+    handler: (args) => {
+      console.log(args);
+      if (args.length === 0) {
+        return "available commands are:\n- help\n- goto";
+      } else {
+        const c = getCommand(args);
+        console.log(c);
+        if (c !== null) {
+          return c[0].description;
+        } else {
+          return "Unknown command";
+        }
+      }
+    },
     description: "get help for all or a specific command",
   },
 };
+
+function getCommand(segments: string[]): [Command, string[]] | null {
+  let c = COMMANDS;
+  while (true) {
+    let next = c[segments[0]];
+    segments = segments.slice(1);
+
+    while (true) {
+      if (typeof next === "undefined") {
+        return null;
+      } else if (typeof next === "string") {
+        next = c[next];
+      } else if ("subcommand" in next) {
+        c = next.subcommand;
+      } else {
+        return [next, segments];
+      }
+    }
+  }
+}
 
 export default function Console() {
   const [shown, setShown] = useState(false);
@@ -58,35 +93,20 @@ export default function Console() {
   }, [shown, input]);
 
   function handleCommand() {
-    let segments = command.split(/\s+/);
-    console.log(segments);
+    const segments = command.split(/\s+/);
+    const cmd = getCommand(segments);
 
-    let c = COMMANDS;
-    while (true) {
-      let next = c[segments[0]];
-      segments = segments.slice(1);
-
-      while (true) {
-        if (typeof next === "undefined") {
-          setTooltip("Unknown command");
-          return;
-        } else if (typeof next === "string") {
-          next = c[next];
-        } else if ("subcommand" in next) {
-          c = next.subcommand;
-          break;
-        } else {
-          const res = next.handler(segments, router);
-          if (typeof res === "string") {
-            setTooltip(res);
-          } else {
-            setShown(false);
-            setCommand("");
-            setTooltip("");
-          }
-          return;
-        }
+    if (cmd) {
+      const res = cmd[0].handler(cmd[1], router);
+      if (typeof res === "string") {
+        setTooltip(res);
+      } else {
+        setShown(false);
+        setCommand("");
+        setTooltip("");
       }
+    } else {
+      setTooltip("Unknown command");
     }
   }
 
@@ -103,7 +123,7 @@ export default function Console() {
           }
         }}
       />
-      <span>{tooltip}</span>
+      <pre>{tooltip}</pre>
     </div>
   );
 }
