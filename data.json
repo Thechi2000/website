@@ -1,0 +1,76 @@
+{
+    "me": {
+        "address": "Rue du Midi 23, 1450 Sainte-Croix, Switzerland",
+        "mail": "ludovic.mermod@gmail.com",
+        "url": "https://lmermod.ch"
+    },
+    "jobs": [
+        {
+            "title": "Research assistant",
+            "url": "https://github.com/epfl-systemf/RegElk",
+            "time": "2023 - Present",
+            "description": "Added support for linear time regexp lookbehinds to Google Chrome (3c83488), as well as bug fixes (51eb31f, 4ea6f8a) and optimizations (1284134, be15181).",
+            "context": "for Pr. Clément Pit-Claudel",
+            "using": [
+                "C/C++"
+            ]
+        },
+        {
+            "title": "Master research project",
+            "url": "https://gitlab.epfl.ch/systemf/fused-decompression-and-decoding",
+            "time": "2024",
+            "description": "Ongoing. Fusing gzip decompression and json parsing to increase performances.",
+            "context": "with Pr. Clément Pit-Claudel",
+            "using": [
+                "Rust"
+            ]
+        },
+        {
+            "title": "IT Manager",
+            "url": "http://clic.epfl.ch",
+            "time": "2023 - 2025",
+            "description": "Built and maintained a self-hosted infrastructure that offers multiple services like drive, single sign-on, etc.",
+            "context": "at the CS Students Association",
+            "using": [
+                "Docker",
+                "Ansible",
+                "Unix",
+                "Typescript"
+            ]
+        },
+        {
+            "title": "CTO",
+            "url": "https://actualia.ch",
+            "time": "2024 - Present",
+            "description": "Responsible for building a mobile app for personalized news updates in a podcast format. The app won first place at the Software Enterprise course’s final competition.",
+            "context": "at Actualia",
+            "using": [
+                "Flutter",
+                "Javascript",
+                "AWS"
+            ]
+        },
+        {
+            "title": "Computer Systems",
+            "url": "https://edu.epfl.ch/coursebook/en/computer-systems-CS-202",
+            "time": "2022-2025",
+            "description": "Tested and helped design two (soon to be three) system-level educational projects. Assisted students through the project and in their learning of C programming.",
+            "context": "with Pr. Édouard Bugnion",
+            "using": [
+                "C",
+                "Python"
+            ]
+        },
+        {
+            "title": "Software Enterprise",
+            "url": "https://edu.epfl.ch/coursebook/en/the-software-enterprise-from-ideas-to-products-CS-311",
+            "time": "2024",
+            "description": "Re-vamped a three weeks Android development bootcamp, after a first catastrophic iteration. The ratings went from 80% negative (1/5) to 70% positive (4/5).",
+            "context": "with Pr. George Candea",
+            "using": [
+                "Kotlin",
+                "Jetpack Compose"
+            ]
+        }
+    ]
+}

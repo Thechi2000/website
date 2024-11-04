@@ -1,19 +1,14 @@
 import { Inter } from "next/font/google";
 import { doom, useAsciiText } from "react-ascii-text";
 import { PAGES } from "@/pages";
+import Title from "@/components/title";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  const asciiTextRef = useAsciiText({
-    isAnimated: false,
-    font: doom,
-    text: ["Ludovic Mermod"],
-  });
-
   return (
     <div>
-      <pre ref={asciiTextRef} />
+      <Title text="Ludovic Mermod" />
       <p>Master student in Computer Science at EPFL</p>
       <p>Type :g &lt;page&gt; to go to a page:</p>
       <ul>
