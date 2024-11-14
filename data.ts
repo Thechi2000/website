@@ -9,7 +9,8 @@ export interface Skill {
 
 export interface Project {
   id: string;
-
+  priority: number;
+  
   name: string;
   description: string;
 
