@@ -158,8 +158,8 @@ export default function Skills({ skills }: { skills: Skill[] }) {
                 <th key="name">
                   <OrderingHeader column="Name" ordering={ordering} setOrdering={setOrdering} />
                 </th>
-                <th key="description">
-                  <p>Description</p>
+                <th key="level">
+                  <OrderingHeader column="Level" ordering={ordering} setOrdering={setOrdering} />
                 </th>
                 <th key="type">
                   <OrderingHeader column="Type" ordering={ordering} setOrdering={setOrdering} />
@@ -167,8 +167,8 @@ export default function Skills({ skills }: { skills: Skill[] }) {
                 <th key="language">
                   <OrderingHeader column="Language" ordering={ordering} setOrdering={setOrdering} />
                 </th>
-                <th key="level">
-                  <OrderingHeader column="Level" ordering={ordering} setOrdering={setOrdering} />
+                <th key="description">
+                  <p>Description</p>
                 </th>
               </tr>
             </thead>
@@ -200,8 +200,8 @@ export default function Skills({ skills }: { skills: Skill[] }) {
                         {s.name}
                       </a>
                     </td>
-                    <td key="description">
-                      <p>{s.description}</p>
+                    <td key="Level">
+                      <p>{s.level}</p>
                     </td>
                     <td key="type">
                       <p>{s.type}</p>
@@ -209,8 +209,8 @@ export default function Skills({ skills }: { skills: Skill[] }) {
                     <td key="language">
                       <p>{s.language || "-"}</p>
                     </td>
-                    <td key="Level">
-                      <p>{s.level}</p>
+                    <td key="description">
+                      <p>{s.description}</p>
                     </td>
                   </tr>
                 ))}
