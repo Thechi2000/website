@@ -167,9 +167,6 @@ export default function Skills({ skills }: { skills: Skill[] }) {
                 <th key="language">
                   <OrderingHeader column="Language" ordering={ordering} setOrdering={setOrdering} />
                 </th>
-                <th key="description">
-                  <p>Description</p>
-                </th>
               </tr>
             </thead>
             <colgroup>
@@ -177,7 +174,6 @@ export default function Skills({ skills }: { skills: Skill[] }) {
               <col style={{ width: "5%" }} />
               <col style={{ width: "15%" }} />
               <col style={{ width: "10%" }} />
-              <col style={{ width: "40%" }} />
             </colgroup>
             <tbody>
               {skills
@@ -208,9 +204,6 @@ export default function Skills({ skills }: { skills: Skill[] }) {
                     </td>
                     <td key="language">
                       <p>{s.language || "-"}</p>
-                    </td>
-                    <td key="description">
-                      <p>{s.description}</p>
                     </td>
                   </tr>
                 ))}
