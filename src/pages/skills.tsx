@@ -11,7 +11,7 @@ export default function Page({ skills }: Data) {
       .map((e) => {
         if (Array.isArray(e[1])) {
           return (
-            <p>
+            <p key={e[0]}>
               <strong>{e[0]}</strong>: {e[1].join(", ")}
             </p>
           );
@@ -28,11 +28,11 @@ export default function Page({ skills }: Data) {
           return (
             <>
               {/* @ts-expect-error*/}
-              <Tag>
+              <Tag key={`${e[0]}-tag`}>
                 {e[0]}
                 {tier}
               </Tag>
-              <ProcessSkills level={level + 1} skills={e[1]} />
+              <ProcessSkills key={`${e[0]}-content`}level={level + 1} skills={e[1]} />
             </>
           );
         }

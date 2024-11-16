@@ -34,9 +34,8 @@ export function NextJSMarkdown({
         },
         ...options?.components,
       }}
-      children={children}
       remarkPlugins={[remarkGfm]}
-    />
+    >{children}</Markdown>
   );
 }
 

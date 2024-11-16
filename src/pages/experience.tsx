@@ -11,7 +11,7 @@ export default function Experience({ jobs }: { jobs: Job[] }) {
       <Breadcrumbs />
       <ul>
         {jobs.map((j) => (
-          <li>
+          <li key={j.context}>
             <a href={j.url} target="_blank">
               <strong>{j.title}</strong>&nbsp;{j.context}
             </a>
