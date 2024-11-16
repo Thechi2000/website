@@ -13,11 +13,13 @@ export default function Page({ projects }: Data) {
       {projects.map((p) => (
         <>
           <h2>{p.name}</h2>
-          <Markdown>{p.description}</Markdown>
+          <Markdown>
+            {p.description +
+              (p.markdownUrl ? ` [Learn more...](${p.markdownUrl})` : "")}
+          </Markdown>
           <p>
             <strong>Languages:</strong> {p.languages.join(", ")}
           </p>
-          {p.markdownUrl ? <Link href={`/projects/${p.id}`}>Learn more...</Link> : <></>}
         </>
       ))}
     </>
