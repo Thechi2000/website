@@ -39,6 +39,12 @@ a {
   color: brown;
 }
 
+.text-center {
+  display: block;
+  text-align: center;
+  width: 100%;
+}
+
 #console {
   position: absolute;
   left: 0;
