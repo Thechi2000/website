@@ -9,5 +9,5 @@ export default function Title({ text }: { text: string }) {
     text: [text],
   });
 
-  return <pre ref={asciiTextRef as any} />;
+  return <pre className="title" ref={asciiTextRef as any} />;
 }

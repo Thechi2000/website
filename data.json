@@ -72,5 +72,61 @@
                 "Jetpack Compose"
             ]
         }
-    ]
+    ],
+    "skills": {
+        "System programming": {
+            "tier": 4,
+            "Languages": [
+                "C/C++",
+                "Rust",
+                "Assembly"
+            ],
+            "Librairies": [
+                "Rocket",
+                "VIPS",
+                "CUDA",
+                "libcheck",
+                "libfuse",
+                "pthread"
+            ],
+            "Tools": [
+                "Make",
+                "CMake"
+            ]
+        },
+        "System administration": {
+            "tier": 4,
+            "Languages": [
+                "Shell"
+            ],
+            "Tools": [
+                "Ansible",
+                "Docker",
+                "Caddy"
+            ]
+        },
+        "Software Engineering": {
+            "tier": 3,
+            "Languages": [
+                "Javascript/Typescript",
+                "Kotlin",
+                "Java",
+                "Scala",
+                "Dart",
+                "SQL",
+                "HTML",
+                "CSS"
+            ],
+            "Librairies": [
+                "React",
+                "Flutter",
+                "Jetpack Compose",
+                "NextJS"
+            ],
+            "Tools": [
+                "Git",
+                "GitHub CI/CD"
+            ]
+        }
+    }
 }
