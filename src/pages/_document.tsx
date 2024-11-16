@@ -15,7 +15,7 @@ export default function Document() {
             stroke={{ color: "black", width: 1.5 }}
           />
         </div>
-        <div>
+        <div id="main">
           <Main />
         </div>
         <NextScript />
