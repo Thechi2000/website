@@ -1,6 +1,7 @@
 import Breadcrumbs from "@/components/breadcrumbs";
 import Title from "@/components/title";
 import { Data } from "@/models";
+import { fetchDataServerSideProps } from "@/utils";
 import { readFile } from "node:fs/promises";
 
 export default function Page({ education }: Data) {
@@ -24,8 +25,4 @@ export default function Page({ education }: Data) {
   );
 }
 
-export async function getServerSideProps() {
-  return {
-    props: JSON.parse((await readFile("data.json")).toString()),
-  };
-}
+export const getServerSideProps = fetchDataServerSideProps;

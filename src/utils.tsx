@@ -1,8 +1,8 @@
 import Link from "next/link";
-import Image from "next/image";
 import { AnchorHTMLAttributes, ImgHTMLAttributes } from "react";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { Data } from "./models";
 
 export function NextJSMarkdown({
   origin,
@@ -38,4 +38,20 @@ export function NextJSMarkdown({
       remarkPlugins={[remarkGfm]}
     />
   );
+}
+
+export async function fetchData(): Promise<Data> {
+  return (
+    await fetch(
+      `https://lmermod.ch/data/data${
+        process.env.NODE_ENV !== "production" ? ".dev" : ""
+      }.json`
+    )
+  ).json();
+}
+
+export async function fetchDataServerSideProps() {
+  return {
+    props: await fetchData(),
+  };
 }

@@ -1,11 +1,10 @@
 import Breadcrumbs from "@/components/breadcrumbs";
 import Title from "@/components/title";
 import { Data } from "@/models";
-import { NextJSMarkdown } from "@/utils";
+import { fetchData, NextJSMarkdown } from "@/utils";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { readFile } from "node:fs/promises";
 
 export default function Page({
   project,
@@ -32,7 +31,7 @@ export default function Page({
 }
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const data: Data = JSON.parse((await readFile("data.json")).toString());
+  const data: Data = await fetchData();
   const project = data.projects.find((p) => p.id === context.params!.slug);
 
   if (!project) {

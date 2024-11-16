@@ -1,6 +1,7 @@
 import Breadcrumbs from "@/components/breadcrumbs";
 import Title from "@/components/title";
 import { Job } from "@/models";
+import { fetchDataServerSideProps } from "@/utils";
 import { readFile } from "fs/promises";
 
 export default function Experience({ jobs }: { jobs: Job[] }) {
@@ -24,8 +25,4 @@ export default function Experience({ jobs }: { jobs: Job[] }) {
   );
 }
 
-export async function getServerSideProps() {
-  return {
-    props: JSON.parse((await readFile("data.json")).toString()),
-  };
-}
+export const getServerSideProps = fetchDataServerSideProps;
