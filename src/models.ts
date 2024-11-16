@@ -7,9 +7,12 @@ export interface Job {
   using: string[];
 }
 
-export type Skills = { [category: string]: Skills } & {tier?: number} | string[];
+export type Skills =
+  | ({ [category: string]: Skills } & { tier?: number })
+  | string[];
 export interface Education {
   title: string;
+  description: string;
   location: string;
   time: string;
   courses: string[];
@@ -30,4 +33,5 @@ export interface Socials {
 export interface Data {
   skills: Skills;
   jobs: Job[];
+  education: Education[];
 }

@@ -128,5 +128,41 @@
                 "GitHub CI/CD"
             ]
         }
-    }
+    },
+    "education": [
+        {
+            "title": "Master degree",
+            "description": "Master in Computer Science at EPFL, with a focus on system programming and networking.",
+            "location": "EPFL",
+            "time": "2024 - 2026",
+            "courses": [
+                "Advanced Operating Systems",
+                "Advanced Computer Architecture",
+                "TCP/IP Networking",
+                "Distributed Algorithms",
+                "Advanced Compiler Construction",
+                "Concurrent Computing"
+            ],
+            "projects": [
+                "Fused decompression and decoding"
+            ]
+        },
+        {
+            "title": "Bachelor degree",
+            "description": "Bachelor in Computer Science at EPFL.",
+            "location": "EPFL",
+            "time": "2020 - 2024",
+            "courses": [
+                "Operating Systems",
+                "Computer Architecture",
+                "Computer Networks",
+                "Computer Language Processing",
+                "Computer Systems"
+            ],
+            "projects": [
+                "Aquatic simulation rendering",
+                "Encrypted key-value store"
+            ]
+        }
+    ]
 }
