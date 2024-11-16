@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { AnchorHTMLAttributes, ImgHTMLAttributes } from "react";
 import Markdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 export function NextJSMarkdown({
   origin,
@@ -34,6 +35,7 @@ export function NextJSMarkdown({
         ...options?.components,
       }}
       children={children}
+      remarkPlugins={[remarkGfm]}
     />
   );
 }
