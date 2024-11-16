@@ -1,4 +1,4 @@
-import { LSystemRenderer, PEANO_GOSPER } from "@/components/lsystem";
+import { HILBERT, LSystemRenderer, PEANO_GOSPER } from "@/components/lsystem";
 import { Html, Head, Main, NextScript } from "next/document";
 
 export default function Document() {
@@ -8,11 +8,11 @@ export default function Document() {
       <body>
         <div id="background">
           <LSystemRenderer
-            iterations={6}
-            lsystem={PEANO_GOSPER}
-            length={7}
+            iterations={8}
+            lsystem={HILBERT}
+            length={12}
             margin={5}
-            stroke={{ color: "black", width: 1 }}
+            stroke={{ color: "black", width: 2 }}
           />
         </div>
         <div>

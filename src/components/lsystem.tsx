@@ -2,14 +2,25 @@ export interface LSystem {
   axiom: string;
   rules: { [key: string]: string };
   angle: number;
+  draw: string[];
 }
 
+export const HILBERT: LSystem = {
+  axiom: "X",
+  rules: {
+    X: "-YF+XFX+FY-",
+    Y: "+XF-YFY-FX+",
+  },
+  draw: ["F"],
+  angle: Math.PI / 2,
+}
 export const PEANO_GOSPER: LSystem = {
   axiom: "X",
   rules: {
     X: "X+YF++YF-FX--FXFX-YF+",
     Y: "-FX+YFYF++YF+FX--FX-Y",
   },
+  draw: ["F", "X", "Y"],
   angle: Math.PI / 3,
 };
 
@@ -53,7 +64,7 @@ export function LSystemRenderer({
   for (const char of iterate(lsystem, iterations)) {
     if (char === "+") angle += lsystem.angle;
     else if (char === "-") angle -= lsystem.angle;
-    else {
+    else if (lsystem.draw.includes(char)) {
       const dx = Math.cos(angle) * length;
       const dy = Math.sin(angle) * length;
       path += ` l${dx} ${dy}`;
