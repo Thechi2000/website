@@ -1,0 +1,15 @@
+# Git files
+.gitignore
+.git
+.github
+
+# Node and NPM files
+node_modules
+npm-debug.log
+
+# Next files
+.next
+
+# Other files
+.eslintrc.json
+README.md
