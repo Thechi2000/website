@@ -30,8 +30,18 @@ export interface Socials {
   url: string;
 }
 
+export interface Project {
+  id: string;
+  name: string;
+  description: string;
+  languages: string[];
+  repository?: string;
+  markdownUrl?: string;
+}
+
 export interface Data {
   skills: Skills;
   jobs: Job[];
   education: Education[];
+  projects: Project[];
 }

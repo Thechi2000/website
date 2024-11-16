@@ -15,7 +15,7 @@ body > div {
   padding: 2rem;
   width: 80ch;
   background-color: white;
-  height: 100dvh;
+  height: max(100dvh, fit-content);
 
   padding: 0 2rem;
   margin: 0;
