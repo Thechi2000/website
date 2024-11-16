@@ -133,7 +133,7 @@
     },
     {
       "id": "fused-decompression-and-parsing",
-      "name": "Fusing JSON decompression and parsing",
+      "name": "JSON parsing",
       "active": true,
       "description": "Attempts to use the innate string deduplication of GZip to optimize JSON parsing from a compressed source",
       "languages": ["Rust"],
@@ -143,7 +143,7 @@
     {
       "id": "clic-infra",
       "priority": 998,
-      "name": "CLIC infrastructure",
+      "name": "CLIC server",
       "active": true,
       "description": "The server infrastructure for the CLIC association. It offers multiple services like a file storage, single sign-on, messaging server, and so on, critical to the association's functioning.",
       "languages": ["Ansible", "Rust"],
