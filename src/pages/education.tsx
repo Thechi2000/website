@@ -1,3 +1,4 @@
+import Breadcrumbs from "@/components/breadcrumbs";
 import Title from "@/components/title";
 import { Data } from "@/models";
 import { readFile } from "node:fs/promises";
@@ -6,6 +7,7 @@ export default function Page({ education }: Data) {
   return (
     <>
       <Title text="Education" />
+      <Breadcrumbs/>
       <div>
         {education.map((e) => (
           <>
