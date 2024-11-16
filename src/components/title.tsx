@@ -5,6 +5,8 @@ export default function Title({ text }: { text: string }) {
     isAnimated: true,
     animationLoop: false,
     fadeInOnly: true,
+    animationDelay: 0,
+    animationSpeed: 10,
     font: doom,
     text: [text],
   });
