@@ -1,253 +1,192 @@
 {
-    "me": {
-        "address": "Rue du Midi 23, 1450 Sainte-Croix, Switzerland",
-        "mail": "ludovic.mermod@gmail.com",
-        "url": "https://lmermod.ch"
+  "me": {
+    "address": "Rue du Midi 23, 1450 Sainte-Croix, Switzerland",
+    "mail": "ludovic.mermod@gmail.com",
+    "url": "https://lmermod.ch"
+  },
+  "jobs": [
+    {
+      "title": "Research assistant",
+      "url": "https://github.com/epfl-systemf/RegElk",
+      "time": "2023 - Present",
+      "description": "Added support for linear time regexp lookbehinds to Google Chrome (3c83488), as well as bug fixes (51eb31f, 4ea6f8a) and optimizations (1284134, be15181).",
+      "context": "for Pr. Clément Pit-Claudel",
+      "using": ["C/C++"]
     },
-    "jobs": [
-        {
-            "title": "Research assistant",
-            "url": "https://github.com/epfl-systemf/RegElk",
-            "time": "2023 - Present",
-            "description": "Added support for linear time regexp lookbehinds to Google Chrome (3c83488), as well as bug fixes (51eb31f, 4ea6f8a) and optimizations (1284134, be15181).",
-            "context": "for Pr. Clément Pit-Claudel",
-            "using": [
-                "C/C++"
-            ]
-        },
-        {
-            "title": "Master research project",
-            "url": "https://gitlab.epfl.ch/systemf/fused-decompression-and-decoding",
-            "time": "2024",
-            "description": "Ongoing. Fusing gzip decompression and json parsing to increase performances.",
-            "context": "with Pr. Clément Pit-Claudel",
-            "using": [
-                "Rust"
-            ]
-        },
-        {
-            "title": "IT Manager",
-            "url": "http://clic.epfl.ch",
-            "time": "2023 - 2025",
-            "description": "Built and maintained a self-hosted infrastructure that offers multiple services like drive, single sign-on, etc.",
-            "context": "at the CS Students Association",
-            "using": [
-                "Docker",
-                "Ansible",
-                "Unix",
-                "Typescript"
-            ]
-        },
-        {
-            "title": "CTO",
-            "url": "https://actualia.ch",
-            "time": "2024 - Present",
-            "description": "Responsible for building a mobile app for personalized news updates in a podcast format. The app won first place at the Software Enterprise course’s final competition.",
-            "context": "at Actualia",
-            "using": [
-                "Flutter",
-                "Javascript",
-                "AWS"
-            ]
-        },
-        {
-            "title": "Computer Systems",
-            "url": "https://edu.epfl.ch/coursebook/en/computer-systems-CS-202",
-            "time": "2022-2025",
-            "description": "Tested and helped design two (soon to be three) system-level educational projects. Assisted students through the project and in their learning of C programming.",
-            "context": "with Pr. Édouard Bugnion",
-            "using": [
-                "C",
-                "Python"
-            ]
-        },
-        {
-            "title": "Software Enterprise",
-            "url": "https://edu.epfl.ch/coursebook/en/the-software-enterprise-from-ideas-to-products-CS-311",
-            "time": "2024",
-            "description": "Re-vamped a three weeks Android development bootcamp, after a first catastrophic iteration. The ratings went from 80% negative (1/5) to 70% positive (4/5).",
-            "context": "with Pr. George Candea",
-            "using": [
-                "Kotlin",
-                "Jetpack Compose"
-            ]
-        }
-    ],
-    "skills": {
-        "System programming": {
-            "tier": 4,
-            "Languages": [
-                "C/C++",
-                "Rust",
-                "Assembly"
-            ],
-            "Librairies": [
-                "Rocket",
-                "VIPS",
-                "CUDA",
-                "libcheck",
-                "libfuse",
-                "pthread"
-            ],
-            "Tools": [
-                "Make",
-                "CMake"
-            ]
-        },
-        "System administration": {
-            "tier": 4,
-            "Languages": [
-                "Shell"
-            ],
-            "Tools": [
-                "Ansible",
-                "Docker",
-                "Caddy"
-            ]
-        },
-        "Software Engineering": {
-            "tier": 3,
-            "Languages": [
-                "Javascript/Typescript",
-                "Kotlin",
-                "Java",
-                "Scala",
-                "Dart",
-                "SQL",
-                "HTML",
-                "CSS"
-            ],
-            "Librairies": [
-                "React",
-                "Flutter",
-                "Jetpack Compose",
-                "NextJS"
-            ],
-            "Tools": [
-                "Git",
-                "GitHub CI/CD"
-            ]
-        }
+    {
+      "title": "Master research project",
+      "url": "https://gitlab.epfl.ch/systemf/fused-decompression-and-decoding",
+      "time": "2024",
+      "description": "Ongoing. Fusing gzip decompression and json parsing to increase performances.",
+      "context": "with Pr. Clément Pit-Claudel",
+      "using": ["Rust"]
     },
-    "education": [
-        {
-            "title": "Master degree",
-            "description": "Master in Computer Science at EPFL, with a focus on system programming and networking.",
-            "location": "EPFL",
-            "time": "2024 - 2026",
-            "courses": [
-                "Advanced Operating Systems",
-                "Advanced Computer Architecture",
-                "TCP/IP Networking",
-                "Distributed Algorithms",
-                "Advanced Compiler Construction",
-                "Concurrent Computing"
-            ],
-            "projects": [
-                "Fused decompression and decoding"
-            ]
-        },
-        {
-            "title": "Bachelor degree",
-            "description": "Bachelor in Computer Science at EPFL.",
-            "location": "EPFL",
-            "time": "2020 - 2024",
-            "courses": [
-                "Operating Systems",
-                "Computer Architecture",
-                "Computer Networks",
-                "Computer Language Processing",
-                "Computer Systems"
-            ],
-            "projects": [
-                "Aquatic simulation rendering",
-                "Encrypted key-value store"
-            ]
-        }
-    ],
-    "projects": [
-        {
-            "id": "regelk",
-            "name": "RegElk",
-            "active": true,
-            "description": "Improving Google Chrome's regular expression engine to support linear time lookbehinds. This was merged in the patch [3c83488](https://chromium-review.googlesource.com/c/v8/v8/+/5093860). I also implemented a few bug fixes and optimizations ([51eb31f](https://chromium-review.googlesource.com/c/v8/v8/+/4755530), [4ea6f8a](https://chromium-review.googlesource.com/c/v8/v8/+/5454791), [1284134](https://chromium-review.googlesource.com/c/v8/v8/+/4778506), [be15181](https://chromium-review.googlesource.com/c/v8/v8/+/5258237)).",
-            "languages": [
-                "C/C++"
-            ],
-            "repository": "https://github.com/epfl-systemf/RegElk",
-            "markdownUrl": "https://raw.githubusercontent.com/epfl-systemf/RegElk/refs/heads/master/README.md"
-        },
-        {
-            "id": "fused-decompression-and-parsing",
-            "name": "Fusing JSON decompression and parsing",
-            "active": true,
-            "description": "Attempts to use the innate string deduplication of GZip to optimize JSON parsing from a compressed source",
-            "languages": [
-                "Rust"
-            ],
-            "repository": "https://gitlab.epfl.ch/systemf/fused-decompression-and-decoding",
-            "markdownUrl": "https://lmermod.ch/data/projects/fused-decompression-and-parsing.md"
-        },
-        {
-            "id": "clic-infra",
-            "priority": 998,
-            "name": "CLIC infrastructure",
-            "active": true,
-            "description": "The server infrastructure for the CLIC association. It offers multiple services like a file storage, single sign-on, messaging server, and so on, critical to the association's functioning.",
-            "languages": [
-                "Ansible",
-                "Rust"
-            ],
-            "organization": "CLIC",
-            "repository": "https://github.com/clicepfl/infra/"
-        },
-        {
-            "id": "computer-systems",
-            "priority": 997,
-            "name": "CS202",
-            "active": true,
-            "description": "Educational projects for 2nd year bachelor students in computer science at EPFL. The projects are designed to teach them system programming and C programming.\n\n The projects are:\n- 2023: A file system inspired by [UnixV6](https://en.wikipedia.org/wiki/Version_6_Unix)\n- 2024: An image database based on Facebook's [Haystack](https://www.usenix.org/event/osdi10/tech/full_papers/Beaver.pdf)\n- 2025: Not revealed yet !",
-            "languages": [
-                "C",
-                "Makefile",
-                "Python"
-            ],
-            "repository": "https://edu.epfl.ch/studyplan/en/bachelor/computer-science/coursebook/computer-systems-CS-202"
-        },
-        {
-            "id": "website",
-            "priority": 996,
-            "name": "Website",
-            "active": true,
-            "description": "This website. It is built with NextJS and React, using Typescript and SCSS.",
-            "languages": [
-                "React",
-                "SCSS",
-                "TypeScript"
-            ],
-            "repository": "https://www.github.com/Thechi2000/lmermod-website",
-            "markdownUrl": "https://raw.githubusercontent.com/Thechi2000/lmermod-website/main/README.md"
-        },
-        {
-            "id": "whiskey-api",
-            "priority": 995,
-            "name": "Whiskey API",
-            "active": false,
-            "description": "API for Access Control of AGEPOLY. It is a mix of Group based access control and Role based access control, and provides a SSO for the different services of AGEPOLY.",
-            "languages": [
-                "Rust"
-            ]
-        },
-        {
-            "id": "agevote-api",
-            "priority": 994,
-            "name": "AGEVoté API",
-            "active": false,
-            "description": "API for online voting system of AGEPOLY. It is built with a block-chain to ensure the integrity of the votes and a distributed encryption key algorithm for confidentiality.",
-            "languages": [
-                "Rust",
-                "TypeScript"
-            ]
-        }
-    ]
+    {
+      "title": "IT Manager",
+      "url": "http://clic.epfl.ch",
+      "time": "2023 - 2025",
+      "description": "Built and maintained a self-hosted infrastructure that offers multiple services like drive, single sign-on, etc.",
+      "context": "at the CS Students Association",
+      "using": ["Docker", "Ansible", "Unix", "Typescript"]
+    },
+    {
+      "title": "CTO",
+      "url": "https://actualia.ch",
+      "time": "2024 - Present",
+      "description": "Responsible for building a mobile app for personalized news updates in a podcast format. The app won first place at the Software Enterprise course’s final competition.",
+      "context": "at Actualia",
+      "using": ["Flutter", "Javascript", "AWS"]
+    },
+    {
+      "title": "Computer Systems",
+      "url": "https://edu.epfl.ch/coursebook/en/computer-systems-CS-202",
+      "time": "2022-2025",
+      "description": "Tested and helped design two (soon to be three) system-level educational projects. Assisted students through the project and in their learning of C programming.",
+      "context": "with Pr. Édouard Bugnion",
+      "using": ["C", "Python"]
+    },
+    {
+      "title": "Software Enterprise",
+      "url": "https://edu.epfl.ch/coursebook/en/the-software-enterprise-from-ideas-to-products-CS-311",
+      "time": "2024",
+      "description": "Re-vamped a three weeks Android development bootcamp, after a first catastrophic iteration. The ratings went from 80% negative (1/5) to 70% positive (4/5).",
+      "context": "with Pr. George Candea",
+      "using": ["Kotlin", "Jetpack Compose"]
+    }
+  ],
+  "skills": {
+    "System programming": {
+      "tier": 4,
+      "Languages": ["C/C++", "Rust", "Assembly"],
+      "Librairies": [
+        "Rocket",
+        "VIPS",
+        "CUDA",
+        "libcheck",
+        "libfuse",
+        "pthread"
+      ],
+      "Tools": ["Make", "CMake"]
+    },
+    "System administration": {
+      "tier": 4,
+      "Languages": ["Shell"],
+      "Tools": ["Ansible", "Docker", "Caddy"]
+    },
+    "Software Engineering": {
+      "tier": 3,
+      "Languages": [
+        "Javascript/Typescript",
+        "Kotlin",
+        "Java",
+        "Scala",
+        "Dart",
+        "SQL",
+        "HTML",
+        "CSS"
+      ],
+      "Librairies": ["React", "Flutter", "Jetpack Compose", "NextJS"],
+      "Tools": ["Git", "GitHub CI/CD"]
+    }
+  },
+  "education": [
+    {
+      "title": "Master degree",
+      "description": "Master in Computer Science at EPFL, with a focus on system programming and networking.",
+      "location": "EPFL",
+      "time": "2024 - 2026",
+      "courses": [
+        "Advanced Operating Systems",
+        "Advanced Computer Architecture",
+        "TCP/IP Networking",
+        "Distributed Algorithms",
+        "Advanced Compiler Construction",
+        "Concurrent Computing"
+      ],
+      "projects": ["Fused decompression and decoding"]
+    },
+    {
+      "title": "Bachelor degree",
+      "description": "Bachelor in Computer Science at EPFL.",
+      "location": "EPFL",
+      "time": "2020 - 2024",
+      "courses": [
+        "Operating Systems",
+        "Computer Architecture",
+        "Computer Networks",
+        "Computer Language Processing",
+        "Computer Systems"
+      ],
+      "projects": ["Aquatic simulation rendering", "Encrypted key-value store"]
+    }
+  ],
+  "projects": [
+    {
+      "id": "regelk",
+      "name": "RegElk",
+      "active": true,
+      "description": "Improving Google Chrome's regular expression engine to support linear time lookbehinds. This was merged in the patch [3c83488](https://chromium-review.googlesource.com/c/v8/v8/+/5093860). I also implemented a few bug fixes and optimizations ([51eb31f](https://chromium-review.googlesource.com/c/v8/v8/+/4755530), [4ea6f8a](https://chromium-review.googlesource.com/c/v8/v8/+/5454791), [1284134](https://chromium-review.googlesource.com/c/v8/v8/+/4778506), [be15181](https://chromium-review.googlesource.com/c/v8/v8/+/5258237)).",
+      "languages": ["C/C++"],
+      "repository": "https://github.com/epfl-systemf/RegElk",
+      "markdownUrl": "https://raw.githubusercontent.com/epfl-systemf/RegElk/refs/heads/master/README.md",
+      "resourcesBaseUrl": "https://raw.githubusercontent.com/epfl-systemf/RegElk/refs/heads/master"
+    },
+    {
+      "id": "fused-decompression-and-parsing",
+      "name": "Fusing JSON decompression and parsing",
+      "active": true,
+      "description": "Attempts to use the innate string deduplication of GZip to optimize JSON parsing from a compressed source",
+      "languages": ["Rust"],
+      "repository": "https://gitlab.epfl.ch/systemf/fused-decompression-and-decoding",
+      "markdownUrl": "https://lmermod.ch/data/projects/fused-decompression-and-parsing.md"
+    },
+    {
+      "id": "clic-infra",
+      "priority": 998,
+      "name": "CLIC infrastructure",
+      "active": true,
+      "description": "The server infrastructure for the CLIC association. It offers multiple services like a file storage, single sign-on, messaging server, and so on, critical to the association's functioning.",
+      "languages": ["Ansible", "Rust"],
+      "organization": "CLIC",
+      "repository": "https://github.com/clicepfl/infra/",
+      "markdownUrl": "https://raw.githubusercontent.com/clicepfl/infra/refs/heads/main/README.md",
+      "resourcesBaseUrl": "https://raw.githubusercontent.com/clicepfl/infra/refs/heads/main"
+    },
+    {
+      "id": "computer-systems",
+      "priority": 997,
+      "name": "CS202",
+      "active": true,
+      "description": "Educational projects for 2nd year bachelor students in computer science at EPFL. The projects are designed to teach them system programming and C programming.\n\n The projects are:\n- 2023: A file system inspired by [UnixV6](https://en.wikipedia.org/wiki/Version_6_Unix)\n- 2024: An image database based on Facebook's [Haystack](https://www.usenix.org/event/osdi10/tech/full_papers/Beaver.pdf)\n- 2025: Not revealed yet !",
+      "languages": ["C", "Makefile", "Python"],
+      "repository": "https://edu.epfl.ch/studyplan/en/bachelor/computer-science/coursebook/computer-systems-CS-202"
+    },
+    {
+      "id": "website",
+      "priority": 996,
+      "name": "Website",
+      "active": true,
+      "description": "This website. It is built with NextJS and React, using Typescript and SCSS.",
+      "languages": ["React", "SCSS", "TypeScript"],
+      "repository": "https://www.github.com/Thechi2000/lmermod-website",
+      "markdownUrl": "https://raw.githubusercontent.com/Thechi2000/lmermod-website/main/README.md",
+      "resourcesBaseUrl": "https://raw.githubusercontent.com/Thechi2000/lmermod-website/main"
+    },
+    {
+      "id": "whiskey-api",
+      "priority": 995,
+      "name": "Whiskey API",
+      "active": false,
+      "description": "API for Access Control of AGEPOLY. It is a mix of Group based access control and Role based access control, and provides a SSO for the different services of AGEPOLY.",
+      "languages": ["Rust"]
+    },
+    {
+      "id": "agevote-api",
+      "priority": 994,
+      "name": "AGEVoté API",
+      "active": false,
+      "description": "API for online voting system of AGEPOLY. It is built with a block-chain to ensure the integrity of the votes and a distributed encryption key algorithm for confidentiality.",
+      "languages": ["Rust", "TypeScript"]
+    }
+  ]
 }

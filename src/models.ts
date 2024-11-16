@@ -37,6 +37,7 @@ export interface Project {
   languages: string[];
   repository?: string;
   markdownUrl?: string;
+  resourcesBaseUrl?: string;
 }
 
 export interface Data {
