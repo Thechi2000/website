@@ -13,7 +13,7 @@ export const HILBERT: LSystem = {
   },
   draw: ["F"],
   angle: Math.PI / 2,
-}
+};
 export const PEANO_GOSPER: LSystem = {
   axiom: "X",
   rules: {
@@ -24,10 +24,36 @@ export const PEANO_GOSPER: LSystem = {
   angle: Math.PI / 3,
 };
 
+export interface BackgroundMetadata {
+  name: string;
+  lsystem: LSystem;
+  iterations: number;
+  length: number;
+  stroke: { color: string; width: number };
+}
 
-export const LSYSTEM_PRESETS: {[key: string]: LSystem} = {
-  "peano-gosper": PEANO_GOSPER,
-  "hilbert": HILBERT,
+export const LSYSTEM_PRESETS: { [key: string]: BackgroundMetadata } = {
+  "peano-gosper": {
+    name: "peano-gosper",
+    lsystem: PEANO_GOSPER,
+    iterations: 6,
+    length: 7,
+    stroke: { color: "black", width: 1.5 },
+  },
+  hilbert: {
+    name: "hilbert",
+    lsystem: HILBERT,
+    iterations: 9,
+    length: 10,
+    stroke: { color: "black", width: 1.5 },
+  },
+};
+
+export interface BackgroundMetadata {
+  lsystem: LSystem;
+  iterations: number;
+  length: number;
+  stroke: { color: string; width: number };
 }
 
 export function iterate(lsystem: LSystem, iterations: number) {
@@ -50,7 +76,7 @@ export function LSystemRenderer({
   length,
   margin = 0,
   stroke,
-  className
+  className,
 }: {
   lsystem: LSystem;
   iterations: number;
@@ -89,7 +115,11 @@ export function LSystemRenderer({
   }
 
   return (
-    <svg className={className} width={maxX - minX + 2 * margin} height={maxY - minY + 2 * margin}>
+    <svg
+      className={className}
+      width={maxX - minX + 2 * margin}
+      height={maxY - minY + 2 * margin}
+    >
       <path
         d={`M${-minX + margin} ${-minY + margin} ${path}`}
         style={{
