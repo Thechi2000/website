@@ -35,7 +35,9 @@ export function NextJSMarkdown({
         ...options?.components,
       }}
       remarkPlugins={[remarkGfm]}
-    >{children}</Markdown>
+    >
+      {children}
+    </Markdown>
   );
 }
 
@@ -53,4 +55,11 @@ export async function fetchDataServerSideProps() {
   return {
     props: await fetchData(),
   };
+}
+
+export function toDisplayString(s: string) {
+  return s.replaceAll(
+    /(^|-)(\w)/g,
+    (_, g1, g2) => `${g1 === "-" ? " " : ""}${g2.toUpperCase()}`
+  );
 }

@@ -1,0 +1,18 @@
+.rendererContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 1rem;
+}
+
+.label {
+  display: block;
+  height: 100%;
+}
+
+.input {
+  text-align: start;
+  vertical-align: middle;
+}

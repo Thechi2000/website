@@ -24,6 +24,12 @@ export const PEANO_GOSPER: LSystem = {
   angle: Math.PI / 3,
 };
 
+
+export const LSYSTEM_PRESETS: {[key: string]: LSystem} = {
+  "peano-gosper": PEANO_GOSPER,
+  "hilbert": HILBERT,
+}
+
 export function iterate(lsystem: LSystem, iterations: number) {
   let value = lsystem.axiom;
 
@@ -44,12 +50,14 @@ export function LSystemRenderer({
   length,
   margin = 0,
   stroke,
+  className
 }: {
   lsystem: LSystem;
   iterations: number;
   length: number;
   margin?: number;
   stroke: { color: string; width: number };
+  className?: string;
 }) {
   let path = "";
   let angle = 0;
@@ -81,7 +89,7 @@ export function LSystemRenderer({
   }
 
   return (
-    <svg width={maxX - minX + 2 * margin} height={maxY - minY + 2 * margin}>
+    <svg className={className} width={maxX - minX + 2 * margin} height={maxY - minY + 2 * margin}>
       <path
         d={`M${-minX + margin} ${-minY + margin} ${path}`}
         style={{

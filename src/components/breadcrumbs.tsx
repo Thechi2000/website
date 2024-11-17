@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import styles from "@/styles/Breadcrumbs.module.scss";
 import Link from "next/link";
+import { toDisplayString } from "@/utils";
 
 export default function Breadcrumbs() {
   const router = useRouter();
@@ -14,10 +15,7 @@ export default function Breadcrumbs() {
         <>
           &nbsp;&gt;&nbsp;
           <Link href={`/${array.slice(0, index + 1).join("/")}`}>
-            {segment.replaceAll(
-              /(^|-)(\w)/g,
-              (_, g1, g2) => `${g1 === "-" ? " " : ""}${g2.toUpperCase()}`
-            )}
+            {toDisplayString(segment)}
           </Link>
         </>
       ))}
