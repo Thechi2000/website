@@ -1,5 +1,6 @@
 import Breadcrumbs from "@/components/breadcrumbs";
 import {
+  BackgroundMetadata,
   LSystem,
   LSYSTEM_PRESETS,
   LSystemRenderer,
@@ -22,6 +23,11 @@ export default function Page() {
 
   const router = useRouter();
 
+  function setBackground(lsystem: BackgroundMetadata) {
+    localStorage.setItem("background", JSON.stringify(lsystem));
+    router.reload();
+  }
+
   return (
     <>
       <Title text="Background" />
@@ -31,16 +37,13 @@ export default function Page() {
       <select
         value={lsystem}
         onChange={(e) => {
+          setLSystem(e.target.value);
+
           if (e.target.value === "custom") {
             return;
           }
 
-          setLSystem(e.target.value);
-          localStorage.setItem(
-            "background",
-            JSON.stringify(LSYSTEM_PRESETS[e.target.value])
-          );
-          router.reload();
+          setBackground(LSYSTEM_PRESETS[e.target.value]);
         }}
       >
         {Object.entries(LSYSTEM_PRESETS).map(([name, lsystem]) => (
@@ -50,7 +53,18 @@ export default function Page() {
         ))}
         <option value="custom">Custom</option>
       </select>
-      {lsystem === "custom" ? <LSystemEditor /> : <></>}
+      {lsystem === "custom" ? (
+        <LSystemEditor
+          initialValue={
+            localStorage.getItem("background")
+              ? JSON.parse(localStorage.getItem("background")!)
+              : null
+          }
+          onSave={setBackground}
+        />
+      ) : (
+        <></>
+      )}
     </>
   );
 }

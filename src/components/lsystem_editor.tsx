@@ -1,15 +1,28 @@
 import { useEffect, useState } from "react";
-import { LSystemRenderer, PEANO_GOSPER } from "./lsystem";
+import {
+  BackgroundMetadata,
+  LSYSTEM_PRESETS,
+  LSystemRenderer,
+  PEANO_GOSPER,
+} from "./lsystem";
 import styles from "@/styles/LSystemEditor.module.scss";
 
-export default function LSystemEditor() {
-  const [length, setLength] = useState(10);
-  const [color, setColor] = useState("#000000");
-  const [width, setWidth] = useState(1);
-  const [iterations, setIterations] = useState(1);
-  const [angle, setAngle] = useState(60);
+export default function LSystemEditor({
+  initialValue = LSYSTEM_PRESETS["peano-gosper"],
+  onSave,
+}: {
+  initialValue: BackgroundMetadata | null;
+  onSave: (b: BackgroundMetadata) => void;
+}) {
+  const [length, setLength] = useState(initialValue?.length || 10);
+  const [color, setColor] = useState(initialValue?.stroke.color || "#aaaaaa");
+  const [width, setWidth] = useState(initialValue?.stroke.width || 10);
+  const [iterations, setIterations] = useState(initialValue?.iterations || 3);
+  const [angle, setAngle] = useState(
+    (initialValue?.lsystem.angle as number) * (180 / Math.PI)
+  );
 
-  const [lsystem, setLSystem] = useState(PEANO_GOSPER);
+  const [lsystem, setLSystem] = useState(initialValue?.lsystem || PEANO_GOSPER);
   useEffect(() => {
     setLSystem((ls) => ({ ...ls, angle: angle * (Math.PI / 180) }));
   }, [lsystem, angle]);
@@ -109,7 +122,7 @@ export default function LSystemEditor() {
         <LSystemRenderer
           className={styles.renderer}
           lsystem={lsystem}
-          iterations={iterations}
+          iterations={iterations > 3 ? 3 : iterations}
           margin={5}
           length={length}
           stroke={{
@@ -118,6 +131,23 @@ export default function LSystemEditor() {
           }}
         />
       </div>
+
+      <button
+        onClick={() =>
+          onSave({
+            iterations,
+            length,
+            lsystem,
+            name: "custom",
+            stroke: {
+              color,
+              width,
+            },
+          })
+        }
+      >
+        Save
+      </button>
     </div>
   );
 }
