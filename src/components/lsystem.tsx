@@ -23,6 +23,15 @@ export const PEANO_GOSPER: LSystem = {
   draw: ["F", "X", "Y"],
   angle: Math.PI / 3,
 };
+export const QUADRATIC_GOSPER: LSystem = {
+  axiom: "-YF",
+  rules: {
+    X: "XFX-YF-YF+FX+FX-YF-YFFX+YF+FXFXYF-FX+YF+FXFX+YF-FXYF-YF-FX+FX+YFYF-",
+    Y: "+FXFX-YF-YF+FX+FXYF+FX-YFYF-FX-YF+FXYFYF-FX-YFFX+FX+YF-YF-FX+FX+YFY",
+  },
+  draw: ["X", "Y"],
+  angle: Math.PI / 2,
+};
 
 export interface BackgroundMetadata {
   name: string;
@@ -44,6 +53,13 @@ export const LSYSTEM_PRESETS: { [key: string]: BackgroundMetadata } = {
     name: "hilbert",
     lsystem: HILBERT,
     iterations: 7,
+    length: 20,
+    stroke: { color: "#aaaaaa", width: 1.5 },
+  },
+  "quadratic-gosper": {
+    name: "quadratic-gosper",
+    lsystem: QUADRATIC_GOSPER,
+    iterations: 3,
     length: 20,
     stroke: { color: "#aaaaaa", width: 1.5 },
   },
