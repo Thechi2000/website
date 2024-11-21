@@ -37,15 +37,15 @@ export const LSYSTEM_PRESETS: { [key: string]: BackgroundMetadata } = {
     name: "peano-gosper",
     lsystem: PEANO_GOSPER,
     iterations: 6,
-    length: 7,
-    stroke: { color: "black", width: 1.5 },
+    length: 10,
+    stroke: { color: "#aaaaaa", width: 1.5 },
   },
   hilbert: {
     name: "hilbert",
     lsystem: HILBERT,
-    iterations: 9,
-    length: 10,
-    stroke: { color: "black", width: 1.5 },
+    iterations: 7,
+    length: 20,
+    stroke: { color: "#aaaaaa", width: 1.5 },
   },
 };
 
