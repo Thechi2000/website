@@ -98,7 +98,7 @@ export default function Console() {
 
   useEffect(() => {
     const listener = (event: KeyboardEvent) => {
-      if (event.key === ":" || (event.ctrlKey && event.key === "k")) {
+      if (event.ctrlKey && event.key === "k") {
         setShown(true);
         event.preventDefault();
       }

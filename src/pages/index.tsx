@@ -13,7 +13,7 @@ export default function Home() {
       <Title text="Ludovic Mermod" />
       <Breadcrumbs />
       <p>Master student in Computer Science at EPFL</p>
-      <p>Type :g &lt;page&gt; to go to a page:</p>
+      <p>Type Ctrl+K then "goto &lt;page&gt;" to go to a page:</p>
       <ul>
         {Object.entries(PAGES).map((p) => (
           <li key={p[0]}>
