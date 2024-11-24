@@ -2,7 +2,7 @@ import { PAGES } from "@/pages";
 import { NextRouter, useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 import { LSYSTEM_PRESETS } from "./lsystem";
-import { toDisplayString } from "@/utils";
+import style from "@/styles/Console.module.scss";
 import { setBackground } from "@/pages/background";
 
 interface Command {
@@ -54,7 +54,7 @@ const COMMANDS: Commands = {
             .map((e) => `${e[0]}: ${e[1].syntax}`)
         );
 
-        return `Available commands are:\n${commands}\n\nHint: you can type any prefix of a command if it is unique.\nFor example, "h" instead of "help".`;
+        return `Available commands are:\n${commands}\n\nHint: you can type any prefix of a command if it is\nunique. For example, "h" instead of "help".`;
       } else {
         const c = getCommand(args);
         console.log(c);
@@ -79,14 +79,14 @@ const COMMANDS: Commands = {
           setBackground(LSYSTEM_PRESETS[preset], router);
         } else {
           return (
-            "Unknown preset. Available presets are\n" +
+            "Unknown preset. Available presets are:\n" +
             dashList(Object.keys(LSYSTEM_PRESETS))
           );
         }
       }
     },
     syntax: "background [preset]",
-    description: `Change the background to the given preset, or open the background picker.\n\nAvailable presets are:\n${dashList(
+    description: `Change the background to the given preset, or open the\nbackground picker.\n\nAvailable presets are:\n${dashList(
       Object.keys(LSYSTEM_PRESETS)
     )}`,
   },
@@ -172,20 +172,44 @@ export default function Console() {
     }
   }
 
+  function generateBackground() {
+    const full = "+----------------------------------------------------------+";
+    const empty =
+      "|                                                          |";
+    const height = 3 + (tooltip ? 1 + tooltip.split("\n").length : 0);
+
+    return [full, ...Array(height).fill(empty), full].join("\n");
+  }
+
   return (
-    <div id="console" className={!shown ? "hidden" : ""}>
-      <span>Console</span>
-      <input
-        ref={input}
-        value={command}
-        onChange={(e) => setCommand(e.target.value)}
-        onKeyUp={(e) => {
-          if (e.key === "Enter") {
-            handleCommand();
-          }
-        }}
-      />
-      <pre>{tooltip}</pre>
+    <div className={style.console}>
+      <pre style={{position: "fixed"}} className={`${style.background} ${!shown ? style.hidden : ""}`}>
+        {generateBackground()}
+      </pre>
+      <pre className={`${style.content} ${!shown ? style.hidden : ""}`}>
+        <br />
+        <br />${" "}
+        <input
+          ref={input}
+          value={command}
+          placeholder="Type a command..."
+          onChange={(e) => setCommand(e.target.value)}
+          onKeyUp={(e) => {
+            if (e.key === "Enter") {
+              handleCommand();
+            }
+          }}
+        />
+        {tooltip ? (
+          <>
+            <br />
+            <br />
+            {tooltip}
+          </>
+        ) : (
+          <></>
+        )}
+      </pre>
     </div>
   );
 }

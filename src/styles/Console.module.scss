@@ -1,0 +1,46 @@
+.console {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 30vh;
+  margin-inline: auto;
+  width: 60ch;
+
+  .content {
+    position: relative;
+
+    padding: 0 2ch;
+    z-index: 99;
+  }
+
+  .background {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 30vh;
+    margin-inline: auto;
+    width: 62ch;
+
+    padding: 0 1ch;
+
+    font-weight: bold;
+
+    background-color: white;
+    z-index: 0;
+  }
+
+  .hidden {
+    visibility: hidden;
+  }
+
+  input {
+    width: 48ch;
+    max-width: 48ch;
+    font-family: monospace;
+    border: none;
+  }
+
+  :focus {
+    outline: none;
+  }
+}
