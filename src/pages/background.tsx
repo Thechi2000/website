@@ -32,7 +32,6 @@ export default function Page() {
     <>
       <Title text="Background" />
       <Breadcrumbs />
-      <p>{lsystem}</p>
       <label>Select your favorite background:</label>&nbsp;
       <select
         value={lsystem}
