@@ -7,19 +7,21 @@ interface Command {
   description: string;
 }
 
+function identify(segment: string, options: string[]): string | null {
+  const matches = options.filter((o) => o.startsWith(segment));
+  return matches.length === 1 ? matches[0] : null;
+}
+
 type Commands = {
-  [keyword: string]:
-    | string
-    | Command
-    | { subcommand: Commands; description: string };
+  [keyword: string]: Command | { subcommand: Commands; description: string };
 };
 const COMMANDS: Commands = {
   goto: {
     handler: (args, router) => {
-      const dest = PAGES[args[0]];
+      const dest = identify(args[0], Object.keys(PAGES));
 
-      if (dest !== undefined) {
-        router.push(`/${dest}`);
+      if (dest !== null) {
+        router.push(`/${PAGES[dest]}`);
       } else {
         return (
           "Unknown destination.\nChoose one from " +
@@ -27,10 +29,8 @@ const COMMANDS: Commands = {
         );
       }
     },
-    description: "goto <page>\nopen a page",
+    description: `Syntax: goto <page>\nOpen a page.\n\nAvailable pages are:\n - ${Object.keys(PAGES).join("\n - ")}`,
   },
-  go: "goto",
-  g: "goto",
   help: {
     handler: (args) => {
       console.log(args);
@@ -40,26 +40,19 @@ const COMMANDS: Commands = {
           .map((e) => `- ${e[0]}`)
           .join("\n");
 
-        return `available commands are:\n${commands}`;
+        return `Available commands are:\n${commands}\n\nHint: you can type any prefix of a command if it is unique.\nFor example, "h" instead of "help".`;
       } else {
         const c = getCommand(args);
         console.log(c);
 
         if (c !== null) {
-          const aliases = Object.entries(c[2])
-            .filter((e) => e[1] === c[3])
-            .map((e) => e[0]);
-          aliases.sort();
-
-          return aliases.length > 0
-            ? `${c[0].description}\naliases: ${aliases.join(", ")}`
-            : c[0].description;
+          return c[0].description;
         } else {
           return "Unknown command";
         }
       }
     },
-    description: "help <cmd>\nget help for all or a specific command",
+    description: "Syntax: help <cmd>\nget help for all or a specific command",
   },
 };
 
@@ -70,15 +63,19 @@ function getCommand(
   let parent = COMMANDS;
   let name = "";
   while (true) {
-    let next = c[(name = segments[0])];
+    name = segments[0];
+
+    const full_match = identify(name, Object.keys(c));
+    if (full_match === null) {
+      return null;
+    }
+
+    let next = c[full_match];
     segments = segments.slice(1);
 
     while (true) {
       if (typeof next === "undefined") {
         return null;
-      } else if (typeof next === "string") {
-        name = next;
-        next = c[next];
       } else if ("subcommand" in next) {
         parent = c;
         c = next.subcommand;
