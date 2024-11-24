@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { LSYSTEM_PRESETS } from "./lsystem";
 import style from "@/styles/Console.module.scss";
 import { setBackground } from "@/pages/background";
+import { symbolName } from "typescript";
 
 interface Command {
   handler: (args: string[], router: NextRouter) => string | void;
@@ -89,6 +90,13 @@ const COMMANDS: Commands = {
     description: `Change the background to the given preset, or open the\nbackground picker.\n\nAvailable presets are:\n${dashList(
       Object.keys(LSYSTEM_PRESETS)
     )}`,
+  },
+  clear: {
+    handler: () => {
+      return "";
+    },
+    syntax: "clear",
+    description: "Clear the console",
   },
 };
 
@@ -183,7 +191,10 @@ export default function Console() {
 
   return (
     <div className={style.console}>
-      <pre style={{position: "fixed"}} className={`${style.background} ${!shown ? style.hidden : ""}`}>
+      <pre
+        style={{ position: "fixed" }}
+        className={`${style.background} ${!shown ? style.hidden : ""}`}
+      >
         {generateBackground()}
       </pre>
       <pre className={`${style.content} ${!shown ? style.hidden : ""}`}>
@@ -197,6 +208,7 @@ export default function Console() {
           onKeyUp={(e) => {
             if (e.key === "Enter") {
               handleCommand();
+              setCommand("");
             }
           }}
         />
