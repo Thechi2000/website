@@ -10,7 +10,12 @@ import Title from "@/components/title";
 import { toDisplayString } from "@/utils";
 import { useEffect, useState } from "react";
 import LSystemEditor from "@/components/lsystem_editor";
-import { useRouter } from "next/router";
+import { NextRouter, useRouter } from "next/router";
+
+export function setBackground(lsystem: BackgroundMetadata, router: NextRouter) {
+  localStorage.setItem("background", JSON.stringify(lsystem));
+  router.reload();
+}
 
 export default function Page() {
   const [lsystem, setLSystem] = useState("peano-gosper");
@@ -22,11 +27,6 @@ export default function Page() {
   }, []);
 
   const router = useRouter();
-
-  function setBackground(lsystem: BackgroundMetadata) {
-    localStorage.setItem("background", JSON.stringify(lsystem));
-    router.reload();
-  }
 
   return (
     <>
@@ -43,7 +43,7 @@ export default function Page() {
             return;
           }
 
-          setBackground(LSYSTEM_PRESETS[e.target.value]);
+          setBackground(LSYSTEM_PRESETS[e.target.value], router);
         }}
       >
         {Object.entries(LSYSTEM_PRESETS).map(([name, lsystem]) => (
@@ -60,7 +60,7 @@ export default function Page() {
               ? JSON.parse(localStorage.getItem("background")!)
               : null
           }
-          onSave={setBackground}
+          onSave={(lsystem) => setBackground(lsystem, router)}
         />
       ) : (
         <></>

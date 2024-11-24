@@ -1,10 +1,14 @@
 import { PAGES } from "@/pages";
 import { NextRouter, useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
+import { LSYSTEM_PRESETS } from "./lsystem";
+import { toDisplayString } from "@/utils";
+import { setBackground } from "@/pages/background";
 
 interface Command {
   handler: (args: string[], router: NextRouter) => string | void;
   description: string;
+  syntax: string;
 }
 
 function identify(segment: string, options: string[]): string | null {
@@ -12,8 +16,14 @@ function identify(segment: string, options: string[]): string | null {
   return matches.length === 1 ? matches[0] : null;
 }
 
+function dashList(list: string[]): string {
+  return list.map((e) => `- ${e}`).join("\n");
+}
+
 type Commands = {
-  [keyword: string]: Command | { subcommand: Commands; description: string };
+  [keyword: string]:
+    | Command
+    | { subcommand: Commands; description: string; syntax: string };
 };
 const COMMANDS: Commands = {
   goto: {
@@ -24,21 +34,25 @@ const COMMANDS: Commands = {
         router.push(`/${PAGES[dest]}`);
       } else {
         return (
-          "Unknown destination.\nChoose one from " +
-          Object.keys(PAGES).join(", ")
+          "Unknown destination. Available destinations are:\n" +
+          dashList(Object.keys(PAGES))
         );
       }
     },
-    description: `Syntax: goto <page>\nOpen a page.\n\nAvailable pages are:\n - ${Object.keys(PAGES).join("\n - ")}`,
+    syntax: "goto <page>",
+    description: `Open a page.\n\nAvailable pages are:\n${dashList(
+      Object.keys(PAGES)
+    )}`,
   },
   help: {
     handler: (args) => {
       console.log(args);
       if (args.length === 0) {
-        const commands = Object.entries(COMMANDS)
-          .filter((e) => typeof e[1] === "object")
-          .map((e) => `- ${e[0]}`)
-          .join("\n");
+        const commands = dashList(
+          Object.entries(COMMANDS)
+            .filter((e) => typeof e[1] === "object")
+            .map((e) => `${e[0]}: ${e[1].syntax}`)
+        );
 
         return `Available commands are:\n${commands}\n\nHint: you can type any prefix of a command if it is unique.\nFor example, "h" instead of "help".`;
       } else {
@@ -46,13 +60,35 @@ const COMMANDS: Commands = {
         console.log(c);
 
         if (c !== null) {
-          return c[0].description;
+          return `Syntax: ${c[0].syntax}\n${c[0].description}`;
         } else {
           return "Unknown command";
         }
       }
     },
-    description: "Syntax: help <cmd>\nget help for all or a specific command",
+    syntax: "help [cmd]",
+    description: "Get help for all or a specific command",
+  },
+  background: {
+    handler: (args, router) => {
+      if (args.length === 0) {
+        router.push("/background");
+      } else {
+        const preset = identify(args[0], Object.keys(LSYSTEM_PRESETS));
+        if (preset) {
+          setBackground(LSYSTEM_PRESETS[preset], router);
+        } else {
+          return (
+            "Unknown preset. Available presets are\n" +
+            dashList(Object.keys(LSYSTEM_PRESETS))
+          );
+        }
+      }
+    },
+    syntax: "background [preset]",
+    description: `Change the background to the given preset, or open the background picker.\n\nAvailable presets are:\n${dashList(
+      Object.keys(LSYSTEM_PRESETS)
+    )}`,
   },
 };
 
