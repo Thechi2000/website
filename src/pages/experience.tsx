@@ -3,24 +3,24 @@ import Title from "@/components/title";
 import { Job } from "@/models";
 import { fetchDataServerSideProps } from "@/utils";
 import { readFile } from "fs/promises";
+import style from "@/styles/Experience.module.scss";
 
 export default function Experience({ jobs }: { jobs: Job[] }) {
   return (
-    <div id="experience">
+    <div id={style.experience}>
       <Title text="Experience" />
       <Breadcrumbs />
-      <ul>
-        {jobs.map((j) => (
-          <li key={j.context}>
-            <a href={j.url} target="_blank">
-              <strong>{j.title}</strong>&nbsp;{j.context}
-            </a>
-            <span className="time">{j.time}</span>
-            <br />
-            {j.description}
-          </li>
-        ))}
-      </ul>
+      {jobs.map((j) => (
+        <p>
+          <a href={j.url} target="_blank">
+            <h2 className={style.title}>{j.title}</h2>&nbsp;{j.context}
+          </a>
+
+          <span className={style.time}>{j.time}</span>
+          <br />
+          {j.description}
+        </p>
+      ))}
     </div>
   );
 }

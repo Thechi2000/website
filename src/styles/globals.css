@@ -46,17 +46,6 @@ a {
   width: 100%;
 }
 
-#experience li {
-  width: 100%;
-  margin-bottom: 1rem;
-}
-#experience .time {
-  float: right;
-}
-#experience ul {
-  padding-left: 0;
-}
-
 #background {
   position: fixed;
   top: 0;
