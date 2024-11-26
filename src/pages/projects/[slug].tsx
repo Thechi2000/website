@@ -42,6 +42,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
   return {
     props: {
+      data,
       project,
       markdown: project.markdownUrl
         ? await (await fetch(project.markdownUrl)).text()

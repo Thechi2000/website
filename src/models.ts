@@ -45,4 +45,5 @@ export interface Data {
   jobs: Job[];
   education: Education[];
   projects: Project[];
+  socials: { [network: string]: Socials };
 }

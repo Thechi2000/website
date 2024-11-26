@@ -7,7 +7,7 @@ import {
   PEANO_GOSPER,
 } from "@/components/lsystem";
 import Title from "@/components/title";
-import { toDisplayString } from "@/utils";
+import { fetchDataServerSideProps, toDisplayString } from "@/utils";
 import { useEffect, useState } from "react";
 import LSystemEditor from "@/components/lsystem_editor";
 import { NextRouter, useRouter } from "next/router";
@@ -67,3 +67,5 @@ export default function Page() {
     </>
   );
 }
+
+export const getServerSideProps = fetchDataServerSideProps;

@@ -23,7 +23,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <>
-      <Console />
+      <Console data={pageProps} />
       {background ? (
         <div id="background">
           <LSystemRenderer

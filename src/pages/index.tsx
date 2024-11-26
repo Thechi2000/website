@@ -4,6 +4,7 @@ import { PAGES } from "@/pages";
 import Title from "@/components/title";
 import Breadcrumbs from "@/components/breadcrumbs";
 import Link from "next/link";
+import { fetchDataServerSideProps } from "@/utils";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,3 +25,5 @@ export default function Home() {
     </div>
   );
 }
+
+export const getServerSideProps = fetchDataServerSideProps;

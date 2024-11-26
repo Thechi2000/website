@@ -5,9 +5,10 @@ import { LSYSTEM_PRESETS } from "./lsystem";
 import style from "@/styles/Console.module.scss";
 import { setBackground } from "@/pages/background";
 import { symbolName } from "typescript";
+import { Data } from "@/models";
 
 interface Command {
-  handler: (args: string[], router: NextRouter) => string | void;
+  handler: (args: string[], router: NextRouter, data: Data) => string | void;
   description: string;
   syntax: string;
 }
@@ -98,6 +99,25 @@ const COMMANDS: Commands = {
     syntax: "clear",
     description: "Clear the console",
   },
+  contact: {
+    handler: (args, router, data) => {
+      console.log(data);
+      const network = identify(args[0], Object.keys(data.socials));
+      console.log(network);
+
+      if (network !== null) {
+        const url = data.socials[network].url;
+        window.open(url, '_blank');
+      } else {
+        return (
+          "Unknown network. Available networks are:\n" +
+          dashList(Object.keys(data.socials))
+        );
+      }
+    },
+    syntax: "contact <network>",
+    description: "Open a contact link",
+  },
 };
 
 function getCommand(
@@ -130,7 +150,7 @@ function getCommand(
   }
 }
 
-export default function Console() {
+export default function Console(props: { data: Data }) {
   const [shown, setShown] = useState(false);
   const input = useRef<HTMLInputElement>(null);
   const [command, setCommand] = useState("");
@@ -167,7 +187,7 @@ export default function Console() {
     const cmd = getCommand(segments);
 
     if (cmd) {
-      const res = cmd[0].handler(cmd[1], router);
+      const res = cmd[0].handler(cmd[1], router, props.data);
       if (typeof res === "string") {
         setTooltip(res);
       } else {
