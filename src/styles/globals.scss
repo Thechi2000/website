@@ -29,10 +29,11 @@ body {
 li {
   list-style-type: none;
   text-indent: -1rem;
-}
-li:before {
-  content: "- ";
-  text-indent: -2rem;
+
+  &:before {
+    content: "- ";
+    text-indent: -2rem;
+  }
 }
 
 a {
@@ -59,13 +60,13 @@ a {
   @media (max-width: 80ch) {
     display: none;
   }
-}
 
-#background > * {
-  position: relative;
-  width: fit-content;
-  height: fit-content;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  > * {
+    position: relative;
+    width: fit-content;
+    height: fit-content;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 }

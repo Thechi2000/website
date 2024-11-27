@@ -4,7 +4,7 @@ import {
   LSYSTEM_PRESETS,
   LSystemRenderer,
 } from "@/components/lsystem";
-import "@/styles/globals.css";
+import "@/styles/globals.scss";
 import type { AppProps } from "next/app";
 import { useEffect, useState } from "react";
 
