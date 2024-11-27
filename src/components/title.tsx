@@ -1,4 +1,5 @@
 import { doom, useAsciiText } from "react-ascii-text";
+import styles from "@/styles/Title.module.scss";
 
 export default function Title({ text }: { text: string }) {
   const asciiTextRef = useAsciiText({
@@ -11,5 +12,10 @@ export default function Title({ text }: { text: string }) {
     text: [text],
   });
 
-  return <pre className="title" ref={asciiTextRef as any} />;
+  return (
+    <>
+      <pre className={styles.ascii} ref={asciiTextRef as any} />
+      <h1 className={styles.normal}>{text}</h1>
+    </>
+  );
 }

@@ -26,10 +26,6 @@ body {
   }
 }
 
-pre.title {
-  text-align: center;
-}
-
 li {
   list-style-type: none;
   text-indent: -1rem;
