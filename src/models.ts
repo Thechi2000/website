@@ -23,6 +23,7 @@ export interface Me {
   address: string;
   mail: string;
   url: string;
+  description: string;
 }
 
 export interface Socials {
@@ -41,6 +42,7 @@ export interface Project {
 }
 
 export interface Data {
+  me: Me;
   skills: Skills;
   jobs: Job[];
   education: Education[];
