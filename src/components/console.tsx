@@ -6,6 +6,7 @@ import style from "@/styles/Console.module.scss";
 import { setBackground } from "@/pages/background";
 import { symbolName } from "typescript";
 import { Data } from "@/models";
+import { stat } from "node:fs";
 
 interface Command {
   handler: (args: string[], router: NextRouter, data: Data) => string | void;
@@ -107,7 +108,7 @@ const COMMANDS: Commands = {
 
       if (network !== null) {
         const url = data.socials[network].url;
-        window.open(url, '_blank');
+        window.open(url, "_blank");
       } else {
         return (
           "Unknown network. Available networks are:\n" +
@@ -155,12 +156,32 @@ export default function Console(props: { data: Data }) {
   const input = useRef<HTMLInputElement>(null);
   const [command, setCommand] = useState("");
   const [tooltip, setTooltip] = useState("");
+
+  const [history, setHistory] = useState<string[]>([]);
+  const [historyIndex, setHistoryIndex] = useState(-1);
+
+  useEffect(() => {
+    const cachedHistory = localStorage.getItem("history");
+
+    if (cachedHistory) {
+      setHistory(JSON.parse(cachedHistory));
+    }
+  }, []);
+
+  useEffect(() => {
+    if (history.length > 0) {
+      localStorage.setItem("history", JSON.stringify(history));
+    }
+  }, [history]);
+
   const router = useRouter();
 
   useEffect(() => {
     const listener = (event: KeyboardEvent) => {
       if (event.ctrlKey && event.key === "k") {
-        setShown(true);
+        setHistoryIndex(-1);
+        setCommand("");
+        setShown((state) => !state);
         event.preventDefault();
       }
 
@@ -191,10 +212,13 @@ export default function Console(props: { data: Data }) {
       if (typeof res === "string") {
         setTooltip(res);
       } else {
-        setShown(false);
-        setCommand("");
         setTooltip("");
+        setShown(false);
       }
+
+      setHistoryIndex(-1);
+      setHistory([command, ...history]);
+      setCommand("");
     } else {
       setTooltip("Unknown command");
     }
@@ -228,7 +252,26 @@ export default function Console(props: { data: Data }) {
           onKeyUp={(e) => {
             if (e.key === "Enter") {
               handleCommand();
-              setCommand("");
+            }
+
+            console.log(historyIndex);
+
+            if (e.key === "ArrowUp") {
+              if (historyIndex < history.length - 1) {
+                console.log(history[historyIndex]);
+                setCommand(history[historyIndex + 1]);
+                setHistoryIndex(historyIndex + 1);
+              }
+            }
+
+            if (e.key === "ArrowDown") {
+              if (historyIndex > 0) {
+                setCommand(history[historyIndex - 1]);
+                setHistoryIndex(historyIndex - 1);
+              } else if (historyIndex === 0) {
+                setCommand("");
+                setHistoryIndex(-1);
+              }
             }
           }}
         />
