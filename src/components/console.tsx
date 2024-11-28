@@ -29,7 +29,7 @@ type Commands = {
     | { subcommand: Commands; description: string; syntax: string };
 };
 const COMMANDS: Commands = {
-  goto: {
+  cd: {
     handler: (args, router) => {
       const dest = identify(args[0], Object.keys(PAGES));
 
@@ -42,7 +42,7 @@ const COMMANDS: Commands = {
         );
       }
     },
-    syntax: "goto <page>",
+    syntax: "cd <page>",
     description: `Open a page.\n\nAvailable pages are:\n${dashList(
       Object.keys(PAGES)
     )}`,
