@@ -11,9 +11,39 @@ body {
   margin: 0;
 }
 
+.light {
+  --color: #23282d;
+  --background: #fcfdfe;
+  --stroke: rgb(170, 170, 170);
+}
+
+.dark {
+  --color: #fcfdfe;
+  --background: #23282d;
+  --stroke: rgb(70, 70, 70);
+}
+
+:root {
+  @extend .light;
+}
+
+[data-theme="light"] {
+  @extend .light;
+}
+
+[data-theme="dark"] {
+  @extend .dark;
+}
+
+svg {
+  stroke: var(--stroke);
+}
+
 #main {
+  color: var(--color);
+  background-color: var(--background);
+
   width: 80ch;
-  background-color: white;
   height: fit-content;
   min-height: 100dvh;
 

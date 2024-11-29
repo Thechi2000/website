@@ -7,9 +7,15 @@ import { setBackground } from "@/pages/background";
 import { symbolName } from "typescript";
 import { Data } from "@/models";
 import { stat } from "node:fs";
+import { useTheme, UseThemeProps } from "next-themes";
 
 interface Command {
-  handler: (args: string[], router: NextRouter, data: Data) => string | void;
+  handler: (
+    args: string[],
+    router: NextRouter,
+    data: Data,
+    themeProvider: UseThemeProps
+  ) => string | void;
   description: string;
   syntax: string;
 }
@@ -115,6 +121,25 @@ const COMMANDS: Commands = {
     syntax: "contact <network>",
     description: "Open a contact link",
   },
+  theme: {
+    handler: (args, router, data, themeProvider) => {
+      if (args.length === 0) {
+        return `Available themes are:\n${dashList(themeProvider.themes)}`;
+      }
+
+      const theme = identify(args[0], themeProvider.themes);
+
+      if (theme !== null) {
+        themeProvider.setTheme(theme);
+      } else {
+        return `Unknown theme. Available themes are:\n${dashList(
+          themeProvider.themes
+        )}`;
+      }
+    },
+    syntax: "theme [theme]",
+    description: "Change the theme",
+  },
 };
 
 function getCommand(
@@ -155,6 +180,8 @@ export default function Console(props: { data: Data }) {
 
   const [history, setHistory] = useState<string[]>([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
+
+  const themeProvider = useTheme();
 
   useEffect(() => {
     const cachedHistory = localStorage.getItem("history");
@@ -204,7 +231,7 @@ export default function Console(props: { data: Data }) {
     const cmd = getCommand(segments);
 
     if (cmd) {
-      const res = cmd[0].handler(cmd[1], router, props.data);
+      const res = cmd[0].handler(cmd[1], router, props.data, themeProvider);
       if (typeof res === "string") {
         setTooltip(res);
       } else {
@@ -249,7 +276,6 @@ export default function Console(props: { data: Data }) {
             if (e.key === "Enter") {
               handleCommand();
             }
-
 
             if (e.key === "ArrowUp") {
               if (historyIndex < history.length - 1) {

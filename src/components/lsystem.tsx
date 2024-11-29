@@ -140,7 +140,6 @@ export function LSystemRenderer({
         d={`M${-minX + margin} ${-minY + margin} ${path}`}
         style={{
           fill: "none",
-          stroke: stroke.color,
           strokeWidth: stroke.width,
         }}
         offset={10}

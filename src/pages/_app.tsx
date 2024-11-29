@@ -5,6 +5,7 @@ import {
   LSystemRenderer,
 } from "@/components/lsystem";
 import "@/styles/globals.scss";
+import { ThemeProvider } from "next-themes";
 import type { AppProps } from "next/app";
 import { useEffect, useState } from "react";
 
@@ -22,7 +23,7 @@ export default function App({ Component, pageProps }: AppProps) {
   }, []);
 
   return (
-    <>
+    <ThemeProvider>
       <Console data={pageProps} />
       {background ? (
         <div id="background">
@@ -38,6 +39,6 @@ export default function App({ Component, pageProps }: AppProps) {
         <></>
       )}
       <Component {...pageProps} />
-    </>
+    </ThemeProvider>
   );
 }
