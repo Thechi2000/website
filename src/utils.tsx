@@ -24,6 +24,7 @@ export function NextJSMarkdown({
           return (
             <img
               {...props}
+              alt={props.alt || ""}
               style={{ maxWidth: "80ch" }}
               src={`${origin || ""}/${props.src || ""}`}
             />

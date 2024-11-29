@@ -11,7 +11,7 @@ export default function Experience({ jobs }: { jobs: Job[] }) {
       <Title text="Experience" />
       <Breadcrumbs />
       {jobs.map((j) => (
-        <p>
+        <p key={j.url}>
           <a href={j.url} target="_blank">
             <h2 className={style.title}>{j.title}</h2>&nbsp;{j.context}
           </a>
