@@ -1,6 +1,9 @@
 .ascii {
   text-align: center;
 
+  user-select: none;
+  -moz-user-select: none;
+
   min-height: 8.5rem;
 
   @media (max-width: 80ch) {
