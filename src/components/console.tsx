@@ -49,7 +49,6 @@ const COMMANDS: Commands = {
   },
   help: {
     handler: (args) => {
-      console.log(args);
       if (args.length === 0) {
         const commands = dashList(
           Object.entries(COMMANDS)
@@ -60,7 +59,6 @@ const COMMANDS: Commands = {
         return `Available commands are:\n${commands}\n\nHint: you can type any prefix of a command if it is\nunique. For example, "h" instead of "help".`;
       } else {
         const c = getCommand(args);
-        console.log(c);
 
         if (c !== null) {
           return `Syntax: ${c[0].syntax}\n${c[0].description}`;
@@ -102,9 +100,7 @@ const COMMANDS: Commands = {
   },
   contact: {
     handler: (args, router, data) => {
-      console.log(data);
       const network = identify(args[0], Object.keys(data.socials));
-      console.log(network);
 
       if (network !== null) {
         const url = data.socials[network].url;
@@ -254,11 +250,9 @@ export default function Console(props: { data: Data }) {
               handleCommand();
             }
 
-            console.log(historyIndex);
 
             if (e.key === "ArrowUp") {
               if (historyIndex < history.length - 1) {
-                console.log(history[historyIndex]);
                 setCommand(history[historyIndex + 1]);
                 setHistoryIndex(historyIndex + 1);
               }

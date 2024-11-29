@@ -13,7 +13,6 @@ export function NextJSMarkdown({
   options?: Parameters<typeof Markdown>[0];
   children: string;
 }): ReturnType<typeof Markdown> {
-  console.log(options);
   return (
     <Markdown
       {...options}
@@ -22,8 +21,6 @@ export function NextJSMarkdown({
           <Link href={props.href || "/404"}>{props.children}</Link>
         ),
         img: (props: ImgHTMLAttributes<HTMLImageElement>) => {
-          console.log("hi");
-          console.log(`${origin || ""}/${props.src || ""}`);
           return (
             <img
               {...props}
