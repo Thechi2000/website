@@ -243,7 +243,7 @@ export default function Console(props: { data: Data }) {
       setHistory([command, ...history]);
       setCommand("");
     } else {
-      setTooltip("Unknown command");
+      setTooltip("Unknown command. Type 'help' for a list of commands.");
     }
   }
 
