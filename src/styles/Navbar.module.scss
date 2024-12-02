@@ -1,0 +1,28 @@
+.navbar {
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap-reverse;
+
+  column-gap: 1rem;
+  row-gap: 0.2rem;
+
+  p {
+    margin: 0.2rem 0;
+  }
+
+  div {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    flex-wrap: wrap;
+    .item {
+      color: red;
+      font-size: large;
+    }
+  }
+
+  padding-top: 0.5rem;
+}

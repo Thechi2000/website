@@ -4,6 +4,7 @@ import {
   LSYSTEM_PRESETS,
   LSystemRenderer,
 } from "@/components/lsystem";
+import Navbar from "@/components/navbar";
 import "@/styles/globals.scss";
 import { ThemeProvider } from "next-themes";
 import type { AppProps } from "next/app";
@@ -25,6 +26,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider>
       <Console data={pageProps} />
+      <Navbar />
       {background ? (
         <div id="background">
           <LSystemRenderer

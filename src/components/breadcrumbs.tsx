@@ -8,7 +8,9 @@ export default function Breadcrumbs() {
 
   const segments = router.asPath.split("/").filter((e) => e.length !== 0);
 
-  return (
+  return segments.length === 0 ? (
+    <></>
+  ) : (
     <p className={styles.breadcrumbs}>
       <Link href={"/"}>Root</Link>
       {segments.map((segment, index, array) => (
