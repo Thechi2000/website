@@ -33,7 +33,7 @@ export const QUADRATIC_GOSPER: LSystem = {
   angle: Math.PI / 2,
 };
 
-export interface BackgroundMetadata {
+export interface LSystemMetadata {
   name: string;
   lsystem: LSystem;
   iterations: number;
@@ -41,7 +41,7 @@ export interface BackgroundMetadata {
   stroke: { color: string; width: number };
 }
 
-export const LSYSTEM_PRESETS: { [key: string]: BackgroundMetadata } = {
+export const LSYSTEM_PRESETS: { [key: string]: LSystemMetadata } = {
   "peano-gosper": {
     name: "peano-gosper",
     lsystem: PEANO_GOSPER,
@@ -65,7 +65,7 @@ export const LSYSTEM_PRESETS: { [key: string]: BackgroundMetadata } = {
   },
 };
 
-export interface BackgroundMetadata {
+export interface LSystemMetadata {
   lsystem: LSystem;
   iterations: number;
   length: number;

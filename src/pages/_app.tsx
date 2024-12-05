@@ -1,45 +1,77 @@
 import Console from "@/components/console";
 import {
-  BackgroundMetadata,
+  LSystemMetadata,
   LSYSTEM_PRESETS,
   LSystemRenderer,
 } from "@/components/lsystem";
 import Navbar from "@/components/navbar";
 import "@/styles/globals.scss";
-import { ThemeProvider } from "next-themes";
+import { ThemeProvider, useTheme } from "next-themes";
 import type { AppProps } from "next/app";
 import { useEffect, useState } from "react";
+import bgDark from "@/../public/background-dark.png";
+import bgLight from "@/../public/background-light.png";
+import { Background } from "@/background";
 
 export default function App({ Component, pageProps }: AppProps) {
-  const [background, setBackground] = useState<BackgroundMetadata | null>(null);
+  const [background, setBackground] = useState<Background | null>(null);
+  const theme = useTheme();
+
   useEffect(() => {
     const value = localStorage.getItem("background");
     if (value) {
       setBackground(JSON.parse(value));
     } else {
-      const background = LSYSTEM_PRESETS["peano-gosper"];
+      const background: Background = { type: "static", name: "Static" };
       setBackground(background);
       localStorage.setItem("background", JSON.stringify(background));
     }
   }, []);
 
+  let backgroundComponent = <></>;
+
+  switch (background?.type) {
+    case "lsystem":
+      backgroundComponent = (
+        <div id="background">
+          <LSystemRenderer
+            iterations={background.metadata.iterations}
+            lsystem={background.metadata.lsystem}
+            length={background.metadata.length}
+            margin={10}
+            stroke={background.metadata.stroke}
+          />
+        </div>
+      );
+      break;
+
+    case "static":
+      backgroundComponent = (
+        <div
+          style={{
+            backgroundImage: `url(${
+              (theme.theme === "dark" ? bgDark : bgLight).src
+            })`,
+            position: "fixed",
+            zIndex: -1,
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+          }}
+        />
+      );
+      break;
+
+    default:
+      break;
+  }
+
   return (
     <ThemeProvider>
       <Console data={pageProps} />
       <Navbar />
-      {background ? (
-        <div id="background">
-          <LSystemRenderer
-            iterations={background.iterations}
-            lsystem={background.lsystem}
-            length={background.length}
-            margin={10}
-            stroke={background.stroke}
-          />
-        </div>
-      ) : (
-        <></>
-      )}
+      {background ? backgroundComponent : <></>}
       <Component {...pageProps} />
     </ThemeProvider>
   );

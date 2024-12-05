@@ -1,13 +1,10 @@
 import { PAGES } from "@/pages";
 import { NextRouter, useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
-import { LSYSTEM_PRESETS } from "./lsystem";
 import style from "@/styles/Console.module.scss";
-import { setBackground } from "@/pages/background";
-import { symbolName } from "typescript";
 import { Data } from "@/models";
-import { stat } from "node:fs";
 import { useTheme, UseThemeProps } from "next-themes";
+import { BACKGROUND_PRESETS, setBackground } from "@/background";
 
 interface Command {
   handler: (
@@ -81,20 +78,20 @@ const COMMANDS: Commands = {
       if (args.length === 0) {
         router.push("/background");
       } else {
-        const preset = identify(args[0], Object.keys(LSYSTEM_PRESETS));
+        const preset = identify(args[0], Object.keys(BACKGROUND_PRESETS));
         if (preset) {
-          setBackground(LSYSTEM_PRESETS[preset], router);
+          setBackground(BACKGROUND_PRESETS[preset], router);
         } else {
           return (
             "Unknown preset. Available presets are:\n" +
-            dashList(Object.keys(LSYSTEM_PRESETS))
+            dashList(Object.keys(BACKGROUND_PRESETS))
           );
         }
       }
     },
     syntax: "background [preset]",
     description: `Change the background to the given preset, or open the\nbackground picker.\n\nAvailable presets are:\n${dashList(
-      Object.keys(LSYSTEM_PRESETS)
+      Object.keys(BACKGROUND_PRESETS)
     )}`,
   },
   clear: {

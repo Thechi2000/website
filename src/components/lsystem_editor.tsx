@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import {
-  BackgroundMetadata,
+  LSystemMetadata,
   LSYSTEM_PRESETS,
   LSystemRenderer,
   PEANO_GOSPER,
@@ -11,8 +11,8 @@ export default function LSystemEditor({
   initialValue = LSYSTEM_PRESETS["peano-gosper"],
   onSave,
 }: {
-  initialValue: BackgroundMetadata | null;
-  onSave: (b: BackgroundMetadata) => void;
+  initialValue: LSystemMetadata | null;
+  onSave: (b: LSystemMetadata) => void;
 }) {
   const [length, setLength] = useState(initialValue?.length || 10);
   const [color, setColor] = useState(initialValue?.stroke.color || "#aaaaaa");
