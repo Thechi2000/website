@@ -13,7 +13,7 @@ interface Command {
     data: Data,
     themeProvider: UseThemeProps
   ) => string | void;
-  description: string;
+  description: (data: Data) => string;
   syntax: string;
 }
 
@@ -46,12 +46,11 @@ const COMMANDS: Commands = {
       }
     },
     syntax: "cd <page>",
-    description: `Open a page.\n\nAvailable pages are:\n${dashList(
-      Object.keys(PAGES)
-    )}`,
+    description: () =>
+      `Open a page.\n\nAvailable pages are:\n${dashList(Object.keys(PAGES))}`,
   },
   help: {
-    handler: (args) => {
+    handler: (args, _, data) => {
       if (args.length === 0) {
         const commands = dashList(
           Object.entries(COMMANDS)
@@ -64,14 +63,14 @@ const COMMANDS: Commands = {
         const c = getCommand(args);
 
         if (c !== null) {
-          return `Syntax: ${c[0].syntax}\n${c[0].description}`;
+          return `Syntax: ${c[0].syntax}\n${c[0].description(data)}`;
         } else {
           return "Unknown command";
         }
       }
     },
     syntax: "help [cmd]",
-    description: "Get help for all or a specific command",
+    description: () => "Get help for all or a specific command",
   },
   background: {
     handler: (args, router) => {
@@ -90,16 +89,17 @@ const COMMANDS: Commands = {
       }
     },
     syntax: "background [preset]",
-    description: `Change the background to the given preset, or open the\nbackground picker.\n\nAvailable presets are:\n${dashList(
-      Object.keys(BACKGROUND_PRESETS)
-    )}`,
+    description: () =>
+      `Change the background to the given preset, or open the\nbackground picker.\n\nAvailable presets are:\n${dashList(
+        Object.keys(BACKGROUND_PRESETS)
+      )}`,
   },
   clear: {
     handler: () => {
       return "";
     },
     syntax: "clear",
-    description: "Clear the console",
+    description: () => "Clear the console",
   },
   contact: {
     handler: (args, router, data) => {
@@ -116,7 +116,10 @@ const COMMANDS: Commands = {
       }
     },
     syntax: "contact <network>",
-    description: "Open a contact link",
+    description: (data) =>
+      `Open a contact link.\n\nAvailable networks are:\n${dashList(
+        Object.keys(data.socials)
+      )}`,
   },
   theme: {
     handler: (args, router, data, themeProvider) => {
@@ -135,7 +138,11 @@ const COMMANDS: Commands = {
       }
     },
     syntax: "theme [theme]",
-    description: "Change the theme",
+    description: () =>
+      `Change the theme.\n\nAvailable themes are:\n${dashList([
+        "dark",
+        "light",
+      ])}`,
   },
 };
 
