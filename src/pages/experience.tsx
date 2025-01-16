@@ -12,13 +12,13 @@ export default function Experience({ jobs }: { jobs: Job[] }) {
       <Breadcrumbs />
       {jobs.map((j) => (
         <p key={j.url}>
-          <a href={j.url} target="_blank">
-            <h2 className={style.title}>{j.title}</h2>&nbsp;{j.context}
-          </a>
-
+          <h2 className={style.title}>{j.title}</h2>&nbsp;{j.context}
           <span className={style.time}>{j.time}</span>
           <br />
-          {j.description}
+          {j.description}{" "}
+          <a href={j.url} target="_blank">
+            Learn&nbsp;more...
+          </a>
         </p>
       ))}
     </div>

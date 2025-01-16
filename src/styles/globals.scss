@@ -15,12 +15,14 @@ body {
   --color: #23282d;
   --background: #fcfdfe;
   --stroke: rgb(170, 170, 170);
+  --link-color: #0b529d;
 }
 
 .dark {
   --color: #fcfdfe;
   --background: #23282d;
   --stroke: rgb(70, 70, 70);
+  --link-color: #127cee;
 }
 
 :root {
@@ -68,7 +70,7 @@ li {
 
 a {
   text-decoration: none;
-  color: brown;
+  color: var(--link-color);
 }
 
 .text-center {
