@@ -1,4 +1,3 @@
-import Breadcrumbs from "@/components/breadcrumbs";
 import Title from "@/components/title";
 import Link from "next/link";
 

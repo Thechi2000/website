@@ -1,4 +1,3 @@
-import Breadcrumbs from "@/components/breadcrumbs";
 import Title from "@/components/title";
 import { Job } from "@/models";
 import { fetchDataServerSideProps } from "@/utils";
@@ -9,7 +8,6 @@ export default function Experience({ jobs }: { jobs: Job[] }) {
   return (
     <div id={style.experience}>
       <Title text="Experience" />
-      <Breadcrumbs />
       {jobs.map((j) => (
         <p key={j.url}>
           <h2 className={style.title}>{j.title}</h2>&nbsp;{j.context}

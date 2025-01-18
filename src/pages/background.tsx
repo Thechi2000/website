@@ -1,5 +1,3 @@
-import Breadcrumbs from "@/components/breadcrumbs";
-import { LSYSTEM_PRESETS } from "@/components/lsystem";
 import Title from "@/components/title";
 import { fetchDataServerSideProps, toDisplayString } from "@/utils";
 import { useEffect, useState } from "react";
@@ -21,7 +19,6 @@ export default function Page() {
   return (
     <>
       <Title text="Background" />
-      <Breadcrumbs />
       <label>Select your favorite background:</label>&nbsp;
       <select
         value={backgroundName}

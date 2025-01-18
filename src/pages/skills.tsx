@@ -1,8 +1,6 @@
-import Breadcrumbs from "@/components/breadcrumbs";
 import Title from "@/components/title";
 import { Data, Skills } from "@/models";
 import { fetchDataServerSideProps } from "@/utils";
-import { readFile } from "node:fs/promises";
 
 export default function Page({ skills }: Data) {
   function ProcessSkills({ skills, level }: { skills: Skills; level: number }) {
@@ -42,7 +40,6 @@ export default function Page({ skills }: Data) {
   return (
     <>
       <Title text="Skills" />
-      <Breadcrumbs />
       <div>
         <ProcessSkills level={2} skills={skills} />
       </div>

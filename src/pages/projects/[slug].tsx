@@ -1,4 +1,3 @@
-import Breadcrumbs from "@/components/breadcrumbs";
 import Title from "@/components/title";
 import { Data } from "@/models";
 import { fetchData, NextJSMarkdown } from "@/utils";
@@ -15,7 +14,6 @@ export default function Page({
   return (
     <>
       <Title text={project.name} />
-      <Breadcrumbs />
       {project.repository ? (
         <Link className="text-center" href={project.repository} target="_blank">
           --&gt; See the repository &lt;--
