@@ -12,10 +12,11 @@ export default function Breadcrumbs() {
     <></>
   ) : (
     <p className={styles.breadcrumbs}>
+      /
       <Link href={"/"}>Root</Link>
       {segments.map((segment, index, array) => (
         <>
-          &nbsp;&gt;&nbsp;
+          /
           <Link href={`/${array.slice(0, index + 1).join("/")}`}>
             {toDisplayString(segment)}
           </Link>
