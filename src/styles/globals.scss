@@ -13,6 +13,7 @@ body {
 
 .light {
   --color: #23282d;
+  --secondary-color: #fcfdfe;
   --background: #fcfdfe;
   --stroke: rgb(170, 170, 170);
   --link-color: #0b529d;
@@ -20,6 +21,7 @@ body {
 
 .dark {
   --color: #fcfdfe;
+  --secondary-color: #23282d;
   --background: #23282d;
   --stroke: rgb(70, 70, 70);
   --link-color: #127cee;
@@ -101,4 +103,25 @@ a {
     left: 50%;
     transform: translate(-50%, -50%);
   }
+}
+
+h2 {
+  color: color-mix(in srgb, var(--color) 95%, var(--secondary-color) 5%);
+}
+
+h3 {
+  color: color-mix(in srgb, var(--color) 90%, var(--secondary-color) 10%);
+}
+
+p,
+h4 {
+  color: color-mix(in srgb, var(--color) 85%, var(--secondary-color) 15%);
+}
+
+h5 {
+  color: color-mix(in srgb, var(--color) 80%, var(--secondary-color) 10%);
+}
+
+h6 {
+  color: color-mix(in srgb, var(--color) 75%, var(--secondary-color) 25%);
 }
