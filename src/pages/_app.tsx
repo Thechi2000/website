@@ -13,9 +13,10 @@ import bgDark from "@/../public/background-dark.png";
 import bgLight from "@/../public/background-light.png";
 import { Background } from "@/background";
 
-export default function App({ Component, pageProps }: AppProps) {
-  const [background, setBackground] = useState<Background | null>(null);
+function Bg() {
   const theme = useTheme();
+  console.log(theme);
+  const [background, setBackground] = useState<Background | null>(null);
 
   useEffect(() => {
     const value = localStorage.getItem("background");
@@ -67,11 +68,15 @@ export default function App({ Component, pageProps }: AppProps) {
       break;
   }
 
+  return backgroundComponent;
+}
+
+export default function App({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider>
       <Console data={pageProps} />
       <Navbar />
-      {background ? backgroundComponent : <></>}
+      <Bg />
       <Component {...pageProps} />
     </ThemeProvider>
   );
