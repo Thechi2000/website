@@ -3,5 +3,6 @@ export const PAGES: { [name: string]: string } = {
   skills: "skills",
   education: "education",
   projects: "projects",
-  experience: "experience"
+  experience: "experience",
+  resume: "resume"
 };

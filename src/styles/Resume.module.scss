@@ -1,0 +1,18 @@
+.resume {
+  width: 80ch;
+  height: fit-content;
+}
+
+.links {
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: 0.8rem;
+
+  a::before {
+    content: "---> ";
+  }
+
+  a::after {
+    content: " <---";
+  }
+}

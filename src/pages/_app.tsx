@@ -1,9 +1,5 @@
 import Console from "@/components/console";
-import {
-  LSystemMetadata,
-  LSYSTEM_PRESETS,
-  LSystemRenderer,
-} from "@/components/lsystem";
+import { LSystemRenderer } from "@/components/lsystem";
 import Navbar from "@/components/navbar";
 import "@/styles/globals.scss";
 import { ThemeProvider, useTheme } from "next-themes";
@@ -15,7 +11,6 @@ import { Background } from "@/background";
 
 function Bg() {
   const theme = useTheme();
-  console.log(theme);
   const [background, setBackground] = useState<Background | null>(null);
 
   useEffect(() => {
