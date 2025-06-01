@@ -1,5 +1,7 @@
 import Title from "@/components/title";
-import { fetchData, NextJSMarkdown } from "@/utils";
+import { NextJSMarkdown } from "@/markdown";
+import { fetchData } from "@/fetch";
+import { Metadata, ResolvingMetadata } from "next";
 
 export default async function Home() {
   const props = await fetchData();

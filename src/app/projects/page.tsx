@@ -1,5 +1,6 @@
 import Title from "@/components/title";
-import { fetchData, NextJSMarkdown } from "@/utils";
+import { NextJSMarkdown } from "@/markdown";
+import { fetchData } from "@/fetch";
 
 export default async function Page() {
   const { projects } = await fetchData();

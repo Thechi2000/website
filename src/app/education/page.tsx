@@ -1,5 +1,5 @@
 import Title from "@/components/title";
-import { fetchData } from "@/utils";
+import { fetchData } from "@/fetch";
 
 export default async function Page() {
   const { education } = await fetchData();

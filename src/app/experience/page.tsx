@@ -1,6 +1,6 @@
 import Title from "@/components/title";
 import style from "@/styles/Experience.module.scss";
-import { fetchData } from "@/utils";
+import { fetchData } from "@/fetch";
 
 export default async function Experience() {
   const { jobs } = await fetchData();

@@ -1,5 +1,5 @@
 import { PAGES } from "@/pages";
-import { fetchData } from "@/utils";
+import { fetchData } from "@/fetch";
 import type { MetadataRoute } from "next";
 
 const BASE_URL = "https://lmermod.ch";

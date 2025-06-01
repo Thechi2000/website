@@ -1,6 +1,6 @@
 import Title from "@/components/title";
 import { Skills } from "@/models";
-import { fetchData } from "@/utils";
+import { fetchData } from "@/fetch";
 
 export default async function Page() {
   function ProcessSkills({ skills, level }: { skills: Skills; level: number }) {

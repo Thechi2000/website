@@ -1,7 +1,7 @@
 "use client";
 
 import Title from "@/components/title";
-import { toDisplayString } from "@/utils";
+import { toDisplayString } from "@/string";
 import { useEffect, useState } from "react";
 import LSystemEditor from "@/components/lsystem_editor";
 import { BACKGROUND_PRESETS, setBackground } from "@/background";

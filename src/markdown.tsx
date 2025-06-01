@@ -2,7 +2,6 @@ import Link from "next/link";
 import { AnchorHTMLAttributes, ImgHTMLAttributes } from "react";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { Data } from "./models";
 
 export function NextJSMarkdown({
   origin,
@@ -36,28 +35,5 @@ export function NextJSMarkdown({
     >
       {children}
     </Markdown>
-  );
-}
-
-export async function fetchData(): Promise<Data> {
-  const data: Data = await (
-    await fetch(
-      `https://lmermod.ch/data/data${
-        process.env.NODE_ENV !== "production" ? ".dev" : ""
-      }.json`
-    )
-  ).json();
-
-  data.me.description = await fetch(data.me.description).then((res) =>
-    res.text()
-  );
-
-  return data;
-}
-
-export function toDisplayString(s: string) {
-  return s.replaceAll(
-    /(^|-)(\w)/g,
-    (_, g1, g2) => `${g1 === "-" ? " " : ""}${g2.toUpperCase()}`
   );
 }

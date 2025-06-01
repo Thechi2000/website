@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import styles from "@/styles/Breadcrumbs.module.scss";
 import Link from "next/link";
-import { toDisplayString } from "@/utils";
+import { toDisplayString } from "@/string";
 import { useEffect, useRef, useState } from "react";
 
 export default function Breadcrumbs() {

@@ -1,6 +1,7 @@
 import Title from "@/components/title";
+import { NextJSMarkdown } from "@/markdown";
 import { Data } from "@/models";
-import { fetchData, NextJSMarkdown } from "@/utils";
+import { fetchData } from "@/fetch";
 import Link from "next/link";
 
 export default async function Page(req: { params: Promise<{ slug: string }> }) {

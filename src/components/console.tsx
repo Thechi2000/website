@@ -1,4 +1,4 @@
-import { fetchData } from "@/utils";
+import { fetchData } from "@/fetch";
 import ConsoleCS from "./console_cs";
 
 export async function Console() {
