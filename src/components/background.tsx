@@ -1,15 +1,13 @@
-import Console from "@/components/console";
-import { LSystemRenderer } from "@/components/lsystem";
-import Navbar from "@/components/navbar";
-import "@/styles/globals.scss";
-import { ThemeProvider, useTheme } from "next-themes";
-import type { AppProps } from "next/app";
+"use client";
+
+import { Background } from "@/background";
+import { LSystemRenderer } from "./lsystem";
+import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import bgDark from "@/../public/background-dark.png";
 import bgLight from "@/../public/background-light.png";
-import { Background } from "@/background";
 
-function Bg() {
+export function Bg() {
   const theme = useTheme();
   const [background, setBackground] = useState<Background | null>(null);
 
@@ -64,15 +62,4 @@ function Bg() {
   }
 
   return backgroundComponent;
-}
-
-export default function App({ Component, pageProps }: AppProps) {
-  return (
-    <ThemeProvider>
-      <Console data={pageProps} />
-      <Navbar />
-      <Bg />
-      <Component {...pageProps} />
-    </ThemeProvider>
-  );
 }

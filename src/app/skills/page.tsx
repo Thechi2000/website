@@ -1,8 +1,8 @@
 import Title from "@/components/title";
-import { Data, Skills } from "@/models";
-import { fetchDataServerSideProps } from "@/utils";
+import { Skills } from "@/models";
+import { fetchData } from "@/utils";
 
-export default function Page({ skills }: Data) {
+export default async function Page() {
   function ProcessSkills({ skills, level }: { skills: Skills; level: number }) {
     return Object.entries(skills as { [category: string]: Skills })
       .filter((e) => e[0] !== "tier")
@@ -30,12 +30,18 @@ export default function Page({ skills }: Data) {
                 {e[0]}
                 {tier}
               </Tag>
-              <ProcessSkills key={`${e[0]}-content`}level={level + 1} skills={e[1]} />
+              <ProcessSkills
+                key={`${e[0]}-content`}
+                level={level + 1}
+                skills={e[1]}
+              />
             </>
           );
         }
       });
   }
+
+  const { skills } = await fetchData();
 
   return (
     <>
@@ -46,5 +52,3 @@ export default function Page({ skills }: Data) {
     </>
   );
 }
-
-export const getServerSideProps = fetchDataServerSideProps;

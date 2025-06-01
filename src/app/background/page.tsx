@@ -1,8 +1,9 @@
+"use client";
+
 import Title from "@/components/title";
-import { fetchDataServerSideProps, toDisplayString } from "@/utils";
+import { toDisplayString } from "@/utils";
 import { useEffect, useState } from "react";
 import LSystemEditor from "@/components/lsystem_editor";
-import { useRouter } from "next/router";
 import { BACKGROUND_PRESETS, setBackground } from "@/background";
 
 export default function Page() {
@@ -13,8 +14,6 @@ export default function Page() {
       setBackgroundName(JSON.parse(value).name);
     }
   }, []);
-
-  const router = useRouter();
 
   return (
     <>
@@ -29,7 +28,7 @@ export default function Page() {
             return;
           }
 
-          setBackground(BACKGROUND_PRESETS[e.target.value], router);
+          setBackground(BACKGROUND_PRESETS[e.target.value]);
         }}
       >
         {Object.entries(BACKGROUND_PRESETS).map(([name, lsystem]) => (
@@ -47,10 +46,11 @@ export default function Page() {
               : null
           }
           onSave={(lsystem) =>
-            setBackground(
-              { type: "lsystem", name: lsystem.name, metadata: lsystem },
-              router
-            )
+            setBackground({
+              type: "lsystem",
+              name: lsystem.name,
+              metadata: lsystem,
+            })
           }
         />
       ) : (
@@ -59,5 +59,3 @@ export default function Page() {
     </>
   );
 }
-
-export const getServerSideProps = fetchDataServerSideProps;

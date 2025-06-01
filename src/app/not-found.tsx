@@ -5,7 +5,9 @@ export default function Page() {
   return (
     <>
       <Title text="ENOENT" />
-      <Link className="text-center" href="/"><h3>---&gt; Back to home &lt;---</h3></Link>
+      <Link className="text-center" href="/">
+        <h3>---&gt; Back to home &lt;---</h3>
+      </Link>
     </>
   );
 }

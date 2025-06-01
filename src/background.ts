@@ -1,4 +1,4 @@
-import { NextRouter } from "next/router";
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import { LSYSTEM_PRESETS, LSystemMetadata } from "./components/lsystem";
 
 export type Background = { name: string } & (
@@ -6,9 +6,9 @@ export type Background = { name: string } & (
   | { type: "lsystem"; metadata: LSystemMetadata }
 );
 
-export function setBackground(background: Background, router: NextRouter) {
+export function setBackground(background: Background) {
   localStorage.setItem("background", JSON.stringify(background));
-  router.reload();
+  window.location.reload();
 }
 
 export const BACKGROUND_PRESETS: { [key: string]: Background } = {

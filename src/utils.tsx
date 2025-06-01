@@ -55,12 +55,6 @@ export async function fetchData(): Promise<Data> {
   return data;
 }
 
-export async function fetchDataServerSideProps() {
-  return {
-    props: await fetchData(),
-  };
-}
-
 export function toDisplayString(s: string) {
   return s.replaceAll(
     /(^|-)(\w)/g,

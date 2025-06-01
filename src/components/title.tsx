@@ -1,3 +1,5 @@
+"use client";
+
 import { doom, useAsciiText } from "react-ascii-text";
 import styles from "@/styles/Title.module.scss";
 

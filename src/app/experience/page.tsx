@@ -1,15 +1,15 @@
 import Title from "@/components/title";
-import { Job } from "@/models";
-import { fetchDataServerSideProps } from "@/utils";
-import { readFile } from "fs/promises";
 import style from "@/styles/Experience.module.scss";
+import { fetchData } from "@/utils";
 
-export default function Experience({ jobs }: { jobs: Job[] }) {
+export default async function Experience() {
+  const { jobs } = await fetchData();
+
   return (
     <div id={style.experience}>
       <Title text="Experience" />
       {jobs.map((j) => (
-        <p key={j.url}>
+        <span key={j.url}>
           <h2 className={style.title}>{j.title}</h2>&nbsp;{j.context}
           <span className={style.time}>{j.time}</span>
           <br />
@@ -17,10 +17,8 @@ export default function Experience({ jobs }: { jobs: Job[] }) {
           <a href={j.url} target="_blank">
             Learn&nbsp;more...
           </a>
-        </p>
+        </span>
       ))}
     </div>
   );
 }
-
-export const getServerSideProps = fetchDataServerSideProps;

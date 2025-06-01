@@ -1,11 +1,11 @@
 import { PAGES } from "@/pages";
-import { fetchDataServerSideProps } from "@/utils";
+import { fetchData } from "@/utils";
 import type { MetadataRoute } from "next";
 
 const BASE_URL = "https://lmermod.ch";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const data = (await fetchDataServerSideProps()).props;
+  const data = await fetchData();
 
   // @ts-expect-error
   return [

@@ -1,13 +1,14 @@
 import Title from "@/components/title";
-import { Data } from "@/models";
-import { fetchDataServerSideProps, NextJSMarkdown } from "@/utils";
+import { fetchData, NextJSMarkdown } from "@/utils";
 
-export default function Page({ projects }: Data) {
+export default async function Page() {
+  const { projects } = await fetchData();
+
   return (
     <>
       <Title text="Projects" />
       {projects.map((p) => (
-        <>
+        <span key={p.id}>
           <h2>{p.name}</h2>
           <NextJSMarkdown>
             {p.description +
@@ -16,10 +17,8 @@ export default function Page({ projects }: Data) {
           <p>
             <strong>Languages:</strong> {p.languages.join(", ")}
           </p>
-        </>
+        </span>
       ))}
     </>
   );
 }
-
-export const getServerSideProps = fetchDataServerSideProps;
