@@ -1,8 +1,9 @@
 import Title from "@/components/title";
-import { NextJSMarkdown } from "@/markdown";
+import { extractMarkdownFirstSentence, NextJSMarkdown } from "@/markdown";
 import { Data } from "@/models";
 import { fetchData } from "@/fetch";
 import Link from "next/link";
+import { generateMetadataWrapper } from "@/og";
 
 export default async function Page(req: { params: Promise<{ slug: string }> }) {
   const data: Data = await fetchData();
@@ -35,3 +36,22 @@ export default async function Page(req: { params: Promise<{ slug: string }> }) {
     </>
   );
 }
+
+export const generateMetadata = generateMetadataWrapper<{ slug: string }>(
+  async ({ params: { slug } }) => {
+    const data = await fetchData();
+    const project = data.projects.find((p) => p.id === slug);
+
+    if (!project) {
+      return {
+        notFound: true,
+      };
+    }
+
+    console.log(slug);
+    return {
+      title: project.name,
+      description: extractMarkdownFirstSentence(project.description),
+    };
+  }
+);

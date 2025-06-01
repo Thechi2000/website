@@ -1,6 +1,7 @@
 import Title from "@/components/title";
 import { Skills } from "@/models";
 import { fetchData } from "@/fetch";
+import { generateMetadataWrapper } from "@/og";
 
 export default async function Page() {
   function ProcessSkills({ skills, level }: { skills: Skills; level: number }) {
@@ -52,3 +53,10 @@ export default async function Page() {
     </>
   );
 }
+
+export const generateMetadata = generateMetadataWrapper(async () => {
+  return {
+    title: "Skills",
+    description: "The abilities I learned and used over the years",
+  };
+});

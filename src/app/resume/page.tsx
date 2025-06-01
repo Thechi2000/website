@@ -1,4 +1,5 @@
 import Title from "@/components/title";
+import { generateMetadataWrapper } from "@/og";
 import styles from "@/styles/Resume.module.scss";
 
 const RESUME_CLOUD = "https://cloud.lmermod.ch/s/t34zRkDDZWAC8mR";
@@ -30,3 +31,10 @@ export default function Page() {
     </>
   );
 }
+
+export const generateMetadata = generateMetadataWrapper(async () => {
+  return {
+    title: "Resume",
+    description: "My resume",
+  };
+});

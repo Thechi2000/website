@@ -1,5 +1,6 @@
 import Title from "@/components/title";
 import { fetchData } from "@/fetch";
+import { generateMetadataWrapper } from "@/og";
 
 export default async function Page() {
   const { education } = await fetchData();
@@ -26,3 +27,9 @@ export default async function Page() {
     </>
   );
 }
+export const generateMetadata = generateMetadataWrapper(async () => {
+  return {
+    title: "Education",
+    description: "The learning curricula I followed",
+  };
+});

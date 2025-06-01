@@ -37,3 +37,10 @@ export function NextJSMarkdown({
     </Markdown>
   );
 }
+
+export function extractMarkdownFirstSentence(md: string) {
+  return md
+    .split("\n")
+    .filter((l) => !l.startsWith("#"))[0]
+    .split(/\./)[0];
+}

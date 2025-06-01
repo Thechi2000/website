@@ -1,7 +1,8 @@
 import Title from "@/components/title";
-import { NextJSMarkdown } from "@/markdown";
+import { extractMarkdownFirstSentence, NextJSMarkdown } from "@/markdown";
 import { fetchData } from "@/fetch";
 import { Metadata, ResolvingMetadata } from "next";
+import { GenerateMetadata, generateMetadataWrapper } from "@/og";
 
 export default async function Home() {
   const props = await fetchData();
@@ -13,3 +14,11 @@ export default async function Home() {
     </div>
   );
 }
+
+export const generateMetadata = generateMetadataWrapper(async () => {
+  const data = await fetchData();
+
+  return {
+    description: extractMarkdownFirstSentence(data.me.description),
+  };
+});

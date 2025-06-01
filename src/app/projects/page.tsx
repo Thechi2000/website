@@ -1,6 +1,7 @@
 import Title from "@/components/title";
 import { NextJSMarkdown } from "@/markdown";
 import { fetchData } from "@/fetch";
+import { generateMetadataWrapper } from "@/og";
 
 export default async function Page() {
   const { projects } = await fetchData();
@@ -23,3 +24,10 @@ export default async function Page() {
     </>
   );
 }
+
+export const generateMetadata = generateMetadataWrapper(async () => {
+  return {
+    title: "Projects",
+    description: "The important projects I've lead or taken part in",
+  };
+});
