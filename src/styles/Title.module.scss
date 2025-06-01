@@ -5,8 +5,13 @@
   -moz-user-select: none;
 
   min-height: 8.5rem;
+  max-height: 8.5rem;
 
   @media (max-width: 80ch) {
+    display: none;
+  }
+
+  &:not(.hasJs) {
     display: none;
   }
 }
@@ -14,7 +19,13 @@
 .normal {
   font-size: 2rem;
 
-  @media (min-width: 80ch) {
+  min-height: 8.5rem;
+  max-height: 8.5rem;
+  line-height: 8.5rem;
+
+  text-align: center;
+
+  &.hasJs {
     display: none;
   }
 }

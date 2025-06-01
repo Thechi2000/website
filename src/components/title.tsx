@@ -2,6 +2,7 @@
 
 import { doom, useAsciiText } from "react-ascii-text";
 import styles from "@/styles/Title.module.scss";
+import { useEffect, useState } from "react";
 
 export default function Title({ text }: { text: string }) {
   const asciiTextRef = useAsciiText({
@@ -14,10 +15,14 @@ export default function Title({ text }: { text: string }) {
     text: [text],
   });
 
+  const [hasJs, setHasJs] = useState(false);
+  const jsClass = hasJs ? " " + styles.hasJs : "";
+  useEffect(() => setHasJs(true), []);
+
   return (
     <>
-      <pre className={styles.ascii} ref={asciiTextRef as any} />
-      <h1 className={styles.normal}>{text}</h1>
+      <pre className={styles.ascii + jsClass} ref={asciiTextRef as any} />
+      <h1 className={styles.normal + jsClass}>{text}</h1>
     </>
   );
 }
