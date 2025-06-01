@@ -40,7 +40,7 @@ const COMMANDS: Commands = {
       const dest = identify(args[0], Object.keys(PAGES));
 
       if (dest !== null) {
-        router.push(`/${PAGES[dest]}`);
+        router.push(`${PAGES[dest]}`);
       } else {
         return (
           "Unknown destination. Available destinations are:\n" +
