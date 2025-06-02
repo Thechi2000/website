@@ -3,6 +3,8 @@ import { AnchorHTMLAttributes, ImgHTMLAttributes } from "react";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
+const LINK_REGEX = /\[(.*?)\]\((.*?)\)/;
+
 export function NextJSMarkdown({
   origin,
   options,
@@ -38,9 +40,12 @@ export function NextJSMarkdown({
   );
 }
 
+export function removeLinks(line: string) {
+  return line.replace(LINK_REGEX, "$1");
+}
+
 export function extractMarkdownFirstSentence(md: string) {
-  return md
-    .split("\n")
-    .filter((l) => !l.startsWith("#"))[0]
-    .split(/\./)[0];
+  return removeLinks(md.split("\n").filter((l) => !l.startsWith("#"))[0]).split(
+    /\./
+  )[0];
 }
