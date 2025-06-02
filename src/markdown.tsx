@@ -4,6 +4,7 @@ import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
 const LINK_REGEX = /\[(.*?)\]\((.*?)\)/;
+const IMAGE_REGEX = /\[(.*?)\]\((.*?\.(?:png|jpg|jpeg))\)/;
 
 export function NextJSMarkdown({
   origin,
@@ -48,4 +49,13 @@ export function extractMarkdownFirstSentence(md: string) {
   return removeLinks(md.split("\n").filter((l) => !l.startsWith("#"))[0]).split(
     /\./
   )[0];
+}
+
+export function findImage(md: string): string | null {
+  const m = md.match(IMAGE_REGEX);
+  if (m === null) {
+    return null;
+  }
+
+  return m[2];
 }

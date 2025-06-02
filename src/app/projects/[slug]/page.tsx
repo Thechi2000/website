@@ -1,5 +1,9 @@
 import Title from "@/components/title";
-import { extractMarkdownFirstSentence, NextJSMarkdown } from "@/markdown";
+import {
+  extractMarkdownFirstSentence,
+  findImage,
+  NextJSMarkdown,
+} from "@/markdown";
 import { Data } from "@/models";
 import { fetchData } from "@/fetch";
 import Link from "next/link";
@@ -48,9 +52,24 @@ export const generateMetadata = generateMetadataWrapper<{ slug: string }>(
       };
     }
 
-    console.log(slug);
+    const markdown = project.markdownUrl
+      ? await (await fetch(project.markdownUrl)).text()
+      : "";
+
+    var imageUrl = findImage(markdown);
+    if (typeof imageUrl === "string") {
+      imageUrl = new URL(
+        `./${imageUrl}`,
+        project.markdownUrl || ""
+      ).toString();
+    }
+
     return {
       title: project.name,
+      openGraph: {
+        type: "website",
+        images: imageUrl || undefined,
+      },
       description: extractMarkdownFirstSentence(project.description),
     };
   }
