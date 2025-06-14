@@ -24,12 +24,14 @@ export function NextJSMarkdown({
         ),
         img: (props: ImgHTMLAttributes<HTMLImageElement>) => {
           return (
-            <img
-              {...props}
-              alt={props.alt || ""}
-              style={{ maxWidth: "80ch" }}
-              src={`${origin || ""}/${props.src || ""}`}
-            />
+            <picture>
+              <img
+                {...props}
+                alt={props.alt || ""}
+                style={{ maxWidth: "80ch" }}
+                src={`${origin || ""}/${props.src || ""}`}
+              />
+            </picture>
           );
         },
         ...options?.components,
@@ -47,7 +49,7 @@ export function removeLinks(line: string) {
 
 export function extractMarkdownFirstSentence(md: string) {
   return removeLinks(md.split("\n").filter((l) => !l.startsWith("#"))[0]).split(
-    /\./,
+    /\./
   )[0];
 }
 
