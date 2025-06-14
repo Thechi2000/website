@@ -7,7 +7,7 @@ import { Bg } from "@/components/background";
 import { Console } from "@/components/console";
 import Navbar from "@/components/navbar";
 import "@/styles/globals.scss";
-import { ThemeProvider, useTheme } from "next-themes";
+import { ThemeProvider } from "next-themes";
 
 export default function RootLayout({
   children,

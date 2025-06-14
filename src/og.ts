@@ -1,7 +1,5 @@
 import { Metadata, ResolvingMetadata } from "next";
 import { AUTHOR, WEBSITE_BASE_URL, WEBSITE_NAME } from "./consts";
-import { TemplateString } from "next/dist/lib/metadata/types/metadata-types";
-import { calvinS } from "react-ascii-text";
 
 export function generateTitle(page: string): string {
   return page ? `${page} | ${WEBSITE_NAME}` : WEBSITE_NAME;

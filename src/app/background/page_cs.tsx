@@ -31,7 +31,7 @@ export default function BackgroundPageCS() {
           setBackground(BACKGROUND_PRESETS[e.target.value]);
         }}
       >
-        {Object.entries(BACKGROUND_PRESETS).map(([name, lsystem]) => (
+        {Object.entries(BACKGROUND_PRESETS).map(([name, _]) => (
           <option key={name} value={name}>
             {toDisplayString(name)}
           </option>
