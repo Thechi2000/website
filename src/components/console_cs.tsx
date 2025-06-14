@@ -14,7 +14,7 @@ interface Command {
     args: string[],
     router: AppRouterInstance,
     data: Data,
-    themeProvider: UseThemeProps
+    themeProvider: UseThemeProps,
   ) => string | void;
   description: (data: Data) => string;
   syntax: string;
@@ -58,7 +58,7 @@ const COMMANDS: Commands = {
         const commands = dashList(
           Object.entries(COMMANDS)
             .filter((e) => typeof e[1] === "object")
-            .map((e) => `${e[0]}: ${e[1].syntax}`)
+            .map((e) => `${e[0]}: ${e[1].syntax}`),
         );
 
         return `Available commands are:\n${commands}\n\nHint: you can type any prefix of a command if it is\nunique. For example, "h" instead of "help".`;
@@ -94,7 +94,7 @@ const COMMANDS: Commands = {
     syntax: "background [preset]",
     description: () =>
       `Change the background to the given preset, or open the\nbackground picker.\n\nAvailable presets are:\n${dashList(
-        Object.keys(BACKGROUND_PRESETS)
+        Object.keys(BACKGROUND_PRESETS),
       )}`,
   },
   clear: {
@@ -121,7 +121,7 @@ const COMMANDS: Commands = {
     syntax: "contact <network>",
     description: (data) =>
       `Open a contact link.\n\nAvailable networks are:\n${dashList(
-        Object.keys(data.socials)
+        Object.keys(data.socials),
       )}`,
   },
   theme: {
@@ -136,7 +136,7 @@ const COMMANDS: Commands = {
         themeProvider.setTheme(theme);
       } else {
         return `Unknown theme. Available themes are:\n${dashList(
-          themeProvider.themes
+          themeProvider.themes,
         )}`;
       }
     },
@@ -150,7 +150,7 @@ const COMMANDS: Commands = {
 };
 
 function getCommand(
-  segments: string[]
+  segments: string[],
 ): [Command, string[], Commands, string] | null {
   let c = COMMANDS;
   let parent = COMMANDS;

@@ -20,7 +20,7 @@ export default async function Page() {
           let tier = "";
           if ("tier" in e[1]) {
             tier = ` (${"\u2605".repeat(e[1].tier as number)}${"\u2606".repeat(
-              5 - (e[1].tier as number)
+              5 - (e[1].tier as number),
             )})`;
           }
 

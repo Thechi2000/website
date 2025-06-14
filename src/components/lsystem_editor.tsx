@@ -19,7 +19,7 @@ export default function LSystemEditor({
   const [width, setWidth] = useState(initialValue?.stroke.width || 10);
   const [iterations, setIterations] = useState(initialValue?.iterations || 3);
   const [angle, setAngle] = useState(
-    (initialValue?.lsystem.angle as number) * (180 / Math.PI)
+    (initialValue?.lsystem.angle as number) * (180 / Math.PI),
   );
 
   const [lsystem, setLSystem] = useState(initialValue?.lsystem || PEANO_GOSPER);

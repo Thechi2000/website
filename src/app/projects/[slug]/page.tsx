@@ -58,10 +58,7 @@ export const generateMetadata = generateMetadataWrapper<{ slug: string }>(
 
     var imageUrl = findImage(markdown);
     if (typeof imageUrl === "string") {
-      imageUrl = new URL(
-        `./${imageUrl}`,
-        project.markdownUrl || ""
-      ).toString();
+      imageUrl = new URL(`./${imageUrl}`, project.markdownUrl || "").toString();
     }
 
     return {
@@ -72,5 +69,5 @@ export const generateMetadata = generateMetadataWrapper<{ slug: string }>(
       },
       description: extractMarkdownFirstSentence(project.description),
     };
-  }
+  },
 );

@@ -4,5 +4,5 @@ export const PAGES: { [name: string]: string } = {
   education: "/education",
   projects: "/projects",
   experience: "/experience",
-  resume: "/resume"
+  resume: "/resume",
 };

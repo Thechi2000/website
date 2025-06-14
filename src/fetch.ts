@@ -5,12 +5,12 @@ export async function fetchData(): Promise<Data> {
     await fetch(
       `https://lmermod.ch/data/data${
         process.env.NODE_ENV !== "production" ? ".dev" : ""
-      }.json`
+      }.json`,
     )
   ).json();
 
   data.me.description = await fetch(data.me.description).then((res) =>
-    res.text()
+    res.text(),
   );
 
   return data;

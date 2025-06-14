@@ -9,11 +9,11 @@ export function generateTitle(page: string): string {
 
 export type GenerateMetadata<P = {}, S = {}> = (
   props: { params: P; searchParams: S },
-  parent: ResolvingMetadata
+  parent: ResolvingMetadata,
 ) => Promise<Metadata>;
 
 export function generateMetadataWrapper<P = {}, S = {}>(
-  generator: GenerateMetadata<P, S>
+  generator: GenerateMetadata<P, S>,
 ): GenerateMetadata<Promise<P>, Promise<S>> {
   return async (props, parent) => {
     var metadata = await generator(
@@ -21,7 +21,7 @@ export function generateMetadataWrapper<P = {}, S = {}>(
         params: await props.params,
         searchParams: await props.searchParams,
       },
-      parent
+      parent,
     );
 
     if (typeof metadata.title !== "object") {

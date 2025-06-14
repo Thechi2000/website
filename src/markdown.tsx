@@ -47,7 +47,7 @@ export function removeLinks(line: string) {
 
 export function extractMarkdownFirstSentence(md: string) {
   return removeLinks(md.split("\n").filter((l) => !l.startsWith("#"))[0]).split(
-    /\./
+    /\./,
   )[0];
 }
 
