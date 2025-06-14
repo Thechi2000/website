@@ -1,10 +1,6 @@
 name: Lint
 
-on:
-  push:
-    branches: ["main"]
-  pull_request:
-    branches: ["main"]
+on: [push, pull_request]
 
 jobs:
   lint:
@@ -16,11 +12,6 @@ jobs:
         with:
           # Allow, Warn, or Deny specific lint rules or entire categories
           # https://oxc.rs/docs/guide/usage/linter/cli.html#allowing-denying-multiple-lints
-          deny: |
-            correctness
-            no-eval
-          warn: |
-            suspicious
-            perf
+          deny: all
           # https://oxc.rs/docs/guide/usage/linter/cli.html#enable-plugins
-          plugins: nextjs jest
+          plugins: nextjs
