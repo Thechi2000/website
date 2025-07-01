@@ -125,3 +125,9 @@ h5 {
 h6 {
   color: color-mix(in srgb, var(--color) 75%, var(--secondary-color) 25%);
 }
+
+object {
+  padding: 1em 0;
+  width: 80ch;
+  height: fit-content;
+}

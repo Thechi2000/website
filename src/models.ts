@@ -38,6 +38,7 @@ export interface Project {
   languages: string[];
   repository?: string;
   markdownUrl?: string;
+  pdfUrl?: string;
   resourcesBaseUrl?: string;
 }
 

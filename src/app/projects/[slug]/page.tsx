@@ -34,9 +34,22 @@ export default async function Page(req: { params: Promise<{ slug: string }> }) {
       ) : (
         <> </>
       )}
-      <NextJSMarkdown origin={project.resourcesBaseUrl}>
-        {markdown}
-      </NextJSMarkdown>
+      {project.pdfUrl ? (
+        <object
+          data={project.pdfUrl}
+          type="application/pdf"
+          style={{ height: "70vh" }}
+        >
+          <p>Something wrong occurred while displaying the PDF :/</p>
+          <p>
+            <a href={project.pdfUrl}>Access it here</a>
+          </p>
+        </object>
+      ) : (
+        <NextJSMarkdown origin={project.resourcesBaseUrl}>
+          {markdown}
+        </NextJSMarkdown>
+      )}
     </>
   );
 }
@@ -69,5 +82,5 @@ export const generateMetadata = generateMetadataWrapper<{ slug: string }>(
       },
       description: extractMarkdownFirstSentence(project.description),
     };
-  },
+  }
 );
