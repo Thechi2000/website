@@ -19,7 +19,8 @@ export default async function Page() {
                 : "")}
           </NextJSMarkdown>
           <p>
-            <strong>Languages:</strong> {p.languages.join(", ")}
+            <strong>Language{p.languages.length > 1 ? "s" : ""}:</strong>{" "}
+            {p.languages.join(", ")}
           </p>
         </span>
       ))}
