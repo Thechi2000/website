@@ -5,6 +5,7 @@ export const metadata = {
 
 import { Bg } from "@/components/background";
 import { Console } from "@/components/console";
+import { Footer } from "@/components/footer";
 import Navbar from "@/components/navbar";
 import "@/styles/globals.scss";
 import { ThemeProvider } from "next-themes";
@@ -22,7 +23,13 @@ export default function RootLayout({
             <Console />
             <Navbar />
             <Bg />
-            {children}
+            <div id="content">
+              <div>
+
+              {children}
+              </div>
+              <Footer />
+            </div>
           </ThemeProvider>
         </div>
       </body>

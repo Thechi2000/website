@@ -29,6 +29,7 @@ export interface Me {
 export interface Socials {
   name: string;
   url: string;
+  icon: string;
 }
 
 export interface Project {
