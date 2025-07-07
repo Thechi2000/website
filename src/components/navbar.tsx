@@ -6,7 +6,7 @@ import Breadcrumbs from "./breadcrumbs";
 
 export default function Navbar() {
   return (
-    <div className={styles.navbar}>
+    <header className={styles.navbar}>
       <Breadcrumbs />
       <div>
         {Object.entries(PAGES).map(([name, path]) => (
@@ -15,6 +15,6 @@ export default function Navbar() {
           </Link>
         ))}
       </div>
-    </div>
+    </header>
   );
 }
