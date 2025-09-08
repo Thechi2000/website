@@ -5,6 +5,7 @@
   top: 30vh;
   margin-inline: auto;
   width: 60ch;
+  z-index: 20;
 
   .content {
     position: relative;
@@ -14,7 +15,7 @@
   }
 
   .background {
-    position: fixed;
+    position: relative;
     left: 0;
     right: 0;
     top: 30vh;
