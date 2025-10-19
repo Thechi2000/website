@@ -19,6 +19,11 @@ export interface Education {
   projects: string[];
 }
 
+export interface Resume {
+  share: string;
+  download: string;
+}
+
 export interface Me {
   address: string;
   mail: string;
@@ -50,4 +55,5 @@ export interface Data {
   education: Education[];
   projects: Project[];
   socials: { [network: string]: Socials };
+  resume: Resume;
 }
