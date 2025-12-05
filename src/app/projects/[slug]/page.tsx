@@ -8,6 +8,7 @@ import { Data } from "@/models";
 import { fetchData } from "@/fetch";
 import Link from "next/link";
 import { generateMetadataWrapper } from "@/og";
+import HeaderLinks from "@/components/header_links";
 
 export default async function Page(req: { params: Promise<{ slug: string }> }) {
   const data: Data = await fetchData();
@@ -27,13 +28,16 @@ export default async function Page(req: { params: Promise<{ slug: string }> }) {
   return (
     <>
       <Title text={project.name} />
-      {project.repository ? (
-        <Link className="text-center" href={project.repository} target="_blank">
-          --&gt; See the repository &lt;--
-        </Link>
-      ) : (
-        <> </>
-      )}
+      <HeaderLinks
+        entries={[
+          [project.repository, "See the repository"],
+          [project.pdfUrl, "See the PDF report"],
+        ]}
+      />
+
+      <NextJSMarkdown origin={project.resourcesBaseUrl}>
+        {markdown}
+      </NextJSMarkdown>
       {project.pdfUrl ? (
         <object
           data={project.pdfUrl}
@@ -46,9 +50,7 @@ export default async function Page(req: { params: Promise<{ slug: string }> }) {
           </p>
         </object>
       ) : (
-        <NextJSMarkdown origin={project.resourcesBaseUrl}>
-          {markdown}
-        </NextJSMarkdown>
+        <></>
       )}
     </>
   );
