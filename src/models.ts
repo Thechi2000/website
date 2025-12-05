@@ -25,6 +25,9 @@ export interface Resume {
 }
 
 export interface Me {
+  name: string;
+  surname: string;
+  username: string;
   address: string;
   mail: string;
   url: string;

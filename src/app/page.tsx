@@ -8,7 +8,7 @@ export default async function Home() {
 
   return (
     <div>
-      <Title text="Ludovic Mermod" />
+      <Title text={`${props.me.name} ${props.me.surname}`} />
       <NextJSMarkdown>{props.me.description}</NextJSMarkdown>
     </div>
   );

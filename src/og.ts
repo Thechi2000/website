@@ -1,17 +1,21 @@
 import { Metadata, ResolvingMetadata } from "next";
-import { AUTHOR, WEBSITE_BASE_URL, WEBSITE_NAME } from "./consts";
+import { WEBSITE_BASE_URL } from "./consts";
+import { fetchData } from "./fetch";
 
-export function generateTitle(page: string): string {
-  return page ? `${page} | ${WEBSITE_NAME}` : WEBSITE_NAME;
+export function generateTitle(
+  page: string | undefined,
+  websiteName: string
+): string {
+  return page ? `${page} | ${websiteName}` : websiteName;
 }
 
 export type GenerateMetadata<P = {}, S = {}> = (
   props: { params: P; searchParams: S },
-  parent: ResolvingMetadata,
+  parent: ResolvingMetadata
 ) => Promise<Metadata>;
 
 export function generateMetadataWrapper<P = {}, S = {}>(
-  generator: GenerateMetadata<P, S>,
+  generator: GenerateMetadata<P, S>
 ): GenerateMetadata<Promise<P>, Promise<S>> {
   return async (props, parent) => {
     var metadata = await generator(
@@ -19,17 +23,22 @@ export function generateMetadataWrapper<P = {}, S = {}>(
         params: await props.params,
         searchParams: await props.searchParams,
       },
-      parent,
+      parent
     );
 
+    const { me } = await fetchData();
+
     if (typeof metadata.title !== "object") {
-      metadata.title = generateTitle(metadata.title || "");
+      metadata.title = generateTitle(
+        metadata.title,
+        `${me.name} ${me.surname}`
+      );
     }
 
     if (!metadata.authors) {
       metadata.authors = [
         {
-          name: AUTHOR,
+          name: `${me.name} ${me.surname}`,
           url: WEBSITE_BASE_URL,
         },
       ];
