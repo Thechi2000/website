@@ -1,3 +1,4 @@
+import { WEBSITE_BASE_URL } from "@/consts";
 import type { MetadataRoute } from "next";
 
 export default function robots(): MetadataRoute.Robots {
@@ -27,6 +28,6 @@ export default function robots(): MetadataRoute.Robots {
       },
       { userAgent: "*", disallow: "/" },
     ],
-    sitemap: "https://lmermod.ch/sitemap.xml",
+    sitemap: `${WEBSITE_BASE_URL}/sitemap.xml`,
   };
 }
