@@ -9,6 +9,7 @@ import { fetchData } from "@/fetch";
 import Link from "next/link";
 import { generateMetadataWrapper } from "@/og";
 import HeaderLinks from "@/components/header_links";
+import { notFound } from "next/navigation";
 
 export default async function Page(req: { params: Promise<{ slug: string }> }) {
   const data: Data = await fetchData();
@@ -16,9 +17,7 @@ export default async function Page(req: { params: Promise<{ slug: string }> }) {
   const project = data.projects.find((p) => p.id === slug);
 
   if (!project) {
-    return {
-      notFound: true,
-    };
+    notFound();
   }
 
   const markdown = project.markdownUrl
@@ -84,5 +83,5 @@ export const generateMetadata = generateMetadataWrapper<{ slug: string }>(
       },
       description: extractMarkdownFirstSentence(project.description),
     };
-  }
+  },
 );
