@@ -17,21 +17,19 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head />
       <body>
-        <div id="main">
-          <ThemeProvider>
+        <ThemeProvider defaultTheme="dark" attribute="class">
+          <div id="main">
             <Console />
             <Navbar />
             <Bg />
             <div id="content">
-              <div>
-
-              {children}
-              </div>
+              <div>{children}</div>
               <Footer />
             </div>
-          </ThemeProvider>
-        </div>
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   );
