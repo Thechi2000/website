@@ -7,18 +7,26 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const data = await fetchData();
 
   // @ts-expect-error
-  return [
+  let entries: MetadataRoute.Sitemap = [
     ...Object.entries(PAGES).map((page) => ({
       url: `${WEBSITE_BASE_URL}/${page[1]}`,
       changeFrequency: "monthly",
-      lastModified: new Date(),
       priority: 1,
     })),
     ...data.projects.map((project) => ({
       url: `${WEBSITE_BASE_URL}/projects/${project.id}`,
       changeFrequence: "monthly",
-      lastModified: new Date(),
       priority: 0.7,
     })),
   ];
+
+  entries.forEach((e) => {
+    // Removes double slashes, except if they are part of the protocol (e.g. https://).
+    e.url = e.url.replaceAll(/(?<=(?<!:)\/)\//g, "");
+
+    // Remove trailing slashes.
+    e.url = e.url.replaceAll(/\/$/g, "");
+  });
+
+  return entries;
 }
