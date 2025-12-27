@@ -20,13 +20,13 @@
     right: 0;
     top: 30vh;
     margin-inline: auto;
-    width: 62ch;
+    width: 60ch;
 
     padding: 0 1ch;
 
     font-weight: bold;
 
-    background-color: var(--background);
+    background-color: color-mix(in srgb, var(--background) 90%, var(--color));
     z-index: 0;
   }
 
@@ -38,6 +38,7 @@
     width: 48ch;
     max-width: 48ch;
     font-family: monospace;
+    background-color: color-mix(in srgb, var(--background) 85%, var(--color));
     border: none;
   }
 
