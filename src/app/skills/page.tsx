@@ -17,26 +17,12 @@ export default async function Page() {
         } else {
           const Tag = `h${level}`;
 
-          let tier = "";
-          if ("tier" in e[1]) {
-            tier = ` (${"\u2605".repeat(e[1].tier as number)}${"\u2606".repeat(
-              5 - (e[1].tier as number),
-            )})`;
-          }
-
           return (
-            <>
+            <div style={{ display: "contents" }} key={e[0]}>
               {/* @ts-expect-error*/}
-              <Tag key={`${e[0]}-tag`}>
-                {e[0]}
-                {tier}
-              </Tag>
-              <ProcessSkills
-                key={`${e[0]}-content`}
-                level={level + 1}
-                skills={e[1]}
-              />
-            </>
+              <Tag>{e[0]}</Tag>
+              <ProcessSkills level={level + 1} skills={e[1]} />
+            </div>
           );
         }
       });
