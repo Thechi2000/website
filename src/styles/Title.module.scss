@@ -6,6 +6,8 @@
 
   min-height: 8.5rem;
   max-height: 8.5rem;
+  margin: 0;
+  padding: 0;
 
   @media (max-width: 80ch) {
     display: none;
@@ -19,9 +21,25 @@
 .normal {
   font-size: 2rem;
 
+  @keyframes myAnimation {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  animation-name: myAnimation;
+  animation-delay: 1s;
+  animation-duration: 500ms;
+  animation-fill-mode: backwards;
+
   min-height: 8.5rem;
   max-height: 8.5rem;
   line-height: 8.5rem;
+  margin: 0;
+  padding: 0;
 
   text-align: center;
 
