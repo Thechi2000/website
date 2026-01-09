@@ -17,7 +17,10 @@ export function SocialIcon({ social }: { social: Socials }) {
       <img
         className={styles.icon}
         about={social.name}
-        src={`${WEBSITE_BASE_URL}/data/socials/${isMounted ? theme.resolvedTheme : "dark"}/${social.icon}`}
+        src={new URL(
+          `/data/socials/${isMounted ? theme.resolvedTheme : "dark"}/${social.icon}`,
+          WEBSITE_BASE_URL,
+        ).toString()}
       />
     </a>
   );

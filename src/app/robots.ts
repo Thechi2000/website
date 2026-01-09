@@ -28,6 +28,6 @@ export default function robots(): MetadataRoute.Robots {
       },
       { userAgent: "*", disallow: "/" },
     ],
-    sitemap: `${WEBSITE_BASE_URL}/sitemap.xml`,
+    sitemap: new URL("/sitemap.xml", WEBSITE_BASE_URL).toString(),
   };
 }
