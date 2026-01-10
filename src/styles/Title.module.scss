@@ -21,6 +21,13 @@
 .normal {
   font-size: 2rem;
 
+  animation-name: myAnimation;
+  animation-delay: 1s;
+  animation-duration: 500ms;
+  animation-fill-mode: backwards;
+
+  text-align: center;
+
   @keyframes myAnimation {
     from {
       opacity: 0;
@@ -30,20 +37,16 @@
     }
   }
 
-  animation-name: myAnimation;
-  animation-delay: 1s;
-  animation-duration: 500ms;
-  animation-fill-mode: backwards;
+  @media (min-width: 80ch) {
+    min-height: 8.5rem;
+    max-height: 8.5rem;
+    line-height: 8.5rem;
 
-  min-height: 8.5rem;
-  max-height: 8.5rem;
-  line-height: 8.5rem;
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 
-  text-align: center;
-
-  &.hasJs {
-    display: none;
+    &.hasJs {
+      display: none;
+    }
   }
 }
