@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { URL } from "node:url";
 import { AnchorHTMLAttributes, ImgHTMLAttributes } from "react";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -19,9 +20,23 @@ export function NextJSMarkdown({
     <Markdown
       {...options}
       components={{
-        a: (props: AnchorHTMLAttributes<HTMLAnchorElement>) => (
-          <Link href={props.href || "/404"}>{props.children}</Link>
-        ),
+        a: (props: AnchorHTMLAttributes<HTMLAnchorElement>) => {
+          const pathStartRe = /^\.\/|\/|/;
+          const isRelative =
+            typeof props.href === "string" && !URL.canParse(props.href);
+
+          return (
+            <Link
+              href={
+                isRelative
+                  ? origin + props.href!.replace(pathStartRe, "/")
+                  : props.href || "/404"
+              }
+            >
+              {props.children}
+            </Link>
+          );
+        },
         img: (props: ImgHTMLAttributes<HTMLImageElement>) => {
           return (
             <picture>
@@ -49,7 +64,7 @@ export function removeLinks(line: string) {
 
 export function extractMarkdownFirstSentence(md: string) {
   return removeLinks(md.split("\n").filter((l) => !l.startsWith("#"))[0]).split(
-    /\./
+    /\./,
   )[0];
 }
 

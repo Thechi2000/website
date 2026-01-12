@@ -8,15 +8,13 @@ export default function HeaderLinks({
 }) {
   return (
     <div className={styles.links}>
-      {entries.map((e) => {
-        return e[0] ? (
-          <Link key={e[0]} className="text-center" href={e[0]} target="_blank">
+      {entries
+        .filter((e) => e[0])
+        .map((e) => (
+          <Link key={e[0]} className="text-center" href={e[0]!} target="_blank">
             --&gt; {e[1]} &lt;--
           </Link>
-        ) : (
-          <></>
-        );
-      })}
+        ))}
     </div>
   );
 }
