@@ -29,7 +29,7 @@ export function NextJSMarkdown({
             <Link
               href={
                 isRelative
-                  ? origin + props.href!.replace(pathStartRe, "/")
+                  ? (origin || "") + props.href!.replace(pathStartRe, "/")
                   : props.href || "/404"
               }
             >
