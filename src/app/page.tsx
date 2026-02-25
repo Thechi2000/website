@@ -14,10 +14,3 @@ export default async function Home() {
   );
 }
 
-export const generateMetadata = generateMetadataWrapper(async () => {
-  const data = await fetchData();
-
-  return {
-    description: extractMarkdownFirstSentence(data.me.description),
-  };
-});
