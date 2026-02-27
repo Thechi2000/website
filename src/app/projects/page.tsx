@@ -14,9 +14,7 @@ export default async function Page() {
           <h2>{p.name}</h2>
           <NextJSMarkdown>
             {p.description +
-              (p.markdownUrl || p.pdfUrl
-                ? ` [Learn more...](/projects/${p.id})`
-                : "")}
+              (p.documents ? ` [Learn more...](/projects/${p.id})` : "")}
           </NextJSMarkdown>
           <p>
             <strong>Language{p.languages.length > 1 ? "s" : ""}:</strong>{" "}

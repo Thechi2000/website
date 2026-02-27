@@ -44,9 +44,7 @@ export interface Project {
   description: string;
   languages: string[];
   repository?: string;
-  markdownUrl?: string;
-  pdfUrl?: string;
-  resourcesBaseUrl?: string;
+  documents?: Document[];
 }
 
 export interface Data {
@@ -57,4 +55,17 @@ export interface Data {
   projects: Project[];
   socials: { [network: string]: Socials };
   resume: Resume;
+}
+
+export type Document = (MarkdownDocument | PdfDocument) & {
+  rendered: boolean;
+};
+export interface MarkdownDocument {
+  type: "markdown";
+  url: string;
+  resourcesBaseUrl: string;
+}
+export interface PdfDocument {
+  type: "pdf";
+  url: string;
 }

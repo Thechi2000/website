@@ -10,6 +10,7 @@ import Link from "next/link";
 import { generateMetadataWrapper } from "@/og";
 import HeaderLinks from "@/components/header_links";
 import { notFound } from "next/navigation";
+import { DocumentRenderer } from "@/components/document";
 
 export default async function Page(req: { params: Promise<{ slug: string }> }) {
   const data: Data = await fetchData();
@@ -20,9 +21,7 @@ export default async function Page(req: { params: Promise<{ slug: string }> }) {
     notFound();
   }
 
-  const markdown = project.markdownUrl
-    ? await (await fetch(project.markdownUrl)).text()
-    : "";
+  let pdf = project.documents?.find((d) => d.type == "pdf");
 
   return (
     <>
@@ -30,27 +29,18 @@ export default async function Page(req: { params: Promise<{ slug: string }> }) {
       <HeaderLinks
         entries={[
           [project.repository, "See the repository"],
-          [project.pdfUrl, "See the PDF report"],
+          ...((pdf ? [[pdf.url, "See the PDF report"]] : []) as [
+            string,
+            string,
+          ][]),
         ]}
       />
 
-      <NextJSMarkdown origin={project.resourcesBaseUrl}>
-        {markdown}
-      </NextJSMarkdown>
-      {project.pdfUrl ? (
-        <object
-          data={project.pdfUrl}
-          type="application/pdf"
-          style={{ height: "70vh" }}
-        >
-          <p>Something wrong occurred while displaying the PDF :/</p>
-          <p>
-            <a href={project.pdfUrl}>Access it here</a>
-          </p>
-        </object>
-      ) : (
-        <></>
-      )}
+      {project.documents
+        ?.filter((d) => d.rendered)
+        ?.map((d) => (
+          <DocumentRenderer doc={d} key={d.type} />
+        ))}
     </>
   );
 }
@@ -66,13 +56,16 @@ export const generateMetadata = generateMetadataWrapper<{ slug: string }>(
       };
     }
 
-    const markdown = project.markdownUrl
-      ? await (await fetch(project.markdownUrl)).text()
-      : "";
+    let imageUrl = undefined;
 
-    var imageUrl = findImage(markdown);
-    if (typeof imageUrl === "string") {
-      imageUrl = new URL(`./${imageUrl}`, project.markdownUrl || "").toString();
+    let md = project.documents?.find((p) => p.type == "markdown");
+    if (md) {
+      const markdown = md.url ? await (await fetch(md.url)).text() : "";
+
+      imageUrl = findImage(markdown);
+      if (typeof imageUrl === "string") {
+        imageUrl = new URL(`./${imageUrl}`, md.url || "").toString();
+      }
     }
 
     return {
